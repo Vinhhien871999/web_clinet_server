@@ -1,0 +1,114 @@
+﻿@model IEnumerable<CNWeb.Models.detailPayment>
+
+@{
+    ViewBag.Title = "DonHang";
+    Layout = "~/Views/Shared/admin_layout.cshtml";
+}
+
+<h2>Chi tiết đơn hàng</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            Tên sản phẩm
+        </th>
+        <th>
+            Màu sắc
+        </th>
+        <th>
+            kích thước
+        </th>
+        <th>
+            Số lượng
+        </th>
+        <th>
+            Giá
+        </th>
+        <th>
+            Khuyến mãi
+        </th>
+        <th>
+            Phương thức thanh toán
+        </th>
+        <th>
+            Thời gian đặt
+        </th>
+        <th>
+            Thời gian giao
+        </th>
+        <th>
+            Tên người vận chuyển
+        </th>
+        <th>
+            Số điện thoại
+        </th>
+        <th>
+            Địa chỉ giao hàng
+        </th>
+        <th>
+            Tên người nhận
+        </th>
+        <th>
+            Số điện thoại
+        </th>
+        <th>
+            Trạng thái
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.TenSP)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MauSac)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.KichThuoc)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.count)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Gia)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GiamGia)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PTThanhToan)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TimeDat)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TimeGiao)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TenNguoiVC)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SDT)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DCGiaoHang)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TenNguoiNhan)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SDTNguoiNhan)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+        </tr>
+    }
+
+</table>
+<p>
+    @Html.ActionLink("Trở về", "DonHang")
+</p>

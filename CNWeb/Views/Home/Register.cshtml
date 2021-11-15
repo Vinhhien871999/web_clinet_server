@@ -1,0 +1,65 @@
+﻿@using CaptchaMvc.HtmlHelpers
+@using CaptchaMvc
+@model CNWeb.Models.User
+@{
+    ViewBag.Title = "Register";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<main class="main-wrapper">
+    <section id="template-register" class="wrapper-account">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="wrapper-customer">
+                        <div id="login-form">
+                            <h1 class="title-box-login">
+                                TRỞ THÀNH THÀNH VIÊN ELITE SHOPPY
+                            </h1>
+                            @using (Html.BeginForm("Register", "Home", FormMethod.Post))
+                            {
+                                @Html.AntiForgeryToken()
+                                @Html.ValidationSummary(true)
+
+                                <div class="input-form">
+                                    <input oninvalid="this.setCustomValidity('Vui lòng nhập Email của bạn!')" oninput="setCustomValidity('')" required="" type="email" name="email" placeholder="Email" value="">
+                                    @*@Html.TextBoxFor(model=>model.email,new { @placeholder = "Email" })
+                @Html.ValidationMessageFor(model=>model.email,"", new { @class = "text-danger" })*@
+
+                                </div>
+                                <div class="input-form">
+                                    <input oninvalid="this.setCustomValidity('Vui lòng nhập Mật khẩu của bạn!')" oninput="setCustomValidity('')" required="" type="password" name="passwork" placeholder="Mật khẩu" value="" aria-autocomplete="list">
+                                </div>
+                                <div class="input-form">
+                                    <input oninvalid="this.setCustomValidity('Vui lòng xác nhận Mật khẩu của bạn!')" oninput="setCustomValidity('')" required="" type="password" name="confirm_password" placeholder="Nhập lại mật khẩu" value="" aria-autocomplete="list">
+                                </div>
+                                <div class="input-form">
+                                    <input oninvalid="this.setCustomValidity('Vui lòng nhập Số điện thoại của bạn!')" oninput="setCustomValidity('')" minlength="10" maxlength="12" required="" type="tel" name="phone" placeholder="Số điện thoại" value="">
+                                </div>
+                                <div class="input-form group-input-radio">
+                                    <input oninvalid="this.setCustomValidity('Vui lòng nhập Tên của bạn!')" oninput="setCustomValidity('')" required="" type="text" name="name" placeholder="Tên" value="">
+                                </div>
+                                <div class="input-form group-input-radio">
+                                    <input oninvalid="this.setCustomValidity('Vui lòng nhập Địa chỉ của bạn!')" oninput="setCustomValidity('')" required="" type="text" name="address" placeholder="Địa chỉ" value="">
+                                </div>
+                                <div class="input-form">
+                                    @Html.MathCaptcha()
+                                </div>
+
+                                <div class="action-customer d-flex justify-content-between align-items-center">
+                                    <button class="button button-normal" id="login-form-submit" name="register-form-submit" type="submit" value="Đăng ký"><span>Đăng ký</span></button>
+                                </div>
+
+                                <div class="action-customer-bellow">
+                                    <span>Bạn đã là thành viên? <a href="@Url.RouteUrl("login")">Đăng nhập</a></span>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <h1 style="color:red;">@ViewBag.ThongBao</h1>
+        </div>
+    </section>
+</main>

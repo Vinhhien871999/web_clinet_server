@@ -1,0 +1,186 @@
+﻿
+@{
+    ViewBag.Title = "ListAddress";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+@using CNWeb.Models
+@model IEnumerable<Receiver>
+
+<div class="col-main">
+    <div id="loading-mask">
+        <div class="background-overlay"></div>
+        <p id="loading_mask_loader" class="loader">
+            <i class="ajax-loader large animate-spin"></i>
+        </p>
+    </div>
+
+    <div class="my-account">
+        <div class="page-title">
+            <h1>Địa chỉ giao nhận</h1>
+        </div>
+
+        <div class="page-description ">
+            Chỉnh sửa thông tin chi tiết sẽ giúp bạn tiết kiệm rất nhiều thời gian trong quá trình mua hàng, hoàn thành thanh toán.
+        </div>
+        @{int i = 1;}
+        @foreach (var item in Model)
+        {
+
+            <div class="account-column account-overview-shipping-address account-overview-shipping-customer billing-address">
+                <h4>Địa chỉ @i</h4>
+                <div class="row_form" id="form_id_@item.id" style="display: none;">
+                    <form action="/User/UpdateAddress" method="post" id="form-validate_@i">
+                        @Html.Hidden("id",item.id)
+                        <div class="add-button add-button-edit">
+                            <input type="button" class="button button-reset" onclick="cancelAddressForm('@item.id');" value="Hủy">
+                            <input type="submit" class="button button-red" value="Cập nhật">
+                        </div>
+                        <div class="account-overview-shipping-customer-content">
+                            <div class="row">
+
+                                <div class="account-overview-shipping-col1 col-sm-12">
+                                    <label for="account-form-name" class="required"><em>* </em>Họ tên</label>
+                                    <input type="text" id="account-form-name" name="name" value="@item.name" class="required-entry validation-passed">
+                                </div>
+
+                            </div>
+                            <div class="input-list">
+                                <label for="account-form-phone" class="required"><em>* </em>Số điện thoại</label>
+                                <input type="text" id="account-form-phone_@i" name="phone" value="@item.phone" class="required-entry validation-passed" style="float: none;">
+                                <label for="account-form-address" class="required"><em>* </em>Địa chỉ</label>
+                                <input type="text" id="account-form-address_@i" name="address" value="@item.address" title="Địa chỉ @i" class="required-entry validation-passed">
+                            </div>
+                        </div>
+
+                    </form>
+
+                </div>
+
+                <div class="account-overview-shipping-customer-content row_info" id="row_@item.id" style="display: block;">
+
+
+                    <p class="Last"><span>Họ tên:&nbsp;</span>@item.name</p>
+
+                    <p><span>Địa chỉ:&nbsp;</span>@item.address</p>
+                    <p><span>Số điện thoại:&nbsp;</span>@item.phone</p>
+
+                    <div class="address-link">
+                        <button onclick="showEdit('@item.id');" data-id="-@item.id" class="button account-overview-shipping-edit-button">Chỉnh sửa</button>
+                        <form action="/User/DeleteAddress" method="post" style="float:left">
+                            @Html.Hidden("id", item.id)
+                            <button type="submit" class="button account-overview-shipping-edit-button del" style="margin-left:10px">Xóa</button>
+                        </form>
+                        
+                    </div>
+                </div>
+
+
+            </div>
+
+            i++;
+        }
+
+        <div class="row_form account-overview-shipping-customer new-address-form" id="address-form" style="display: none;">
+            <form action="/User/AddAddress" method="post" id="form-validate">
+                <h4>Thêm thông tin giao nhận</h4>
+                <div class="account-overview-shipping-customer-content">
+                    <div class="row">
+                        <div class="account-overview-shipping-col1 col-sm-12">
+                            <label for="account-form-lastname" class="required"><em>* </em>Họ tên</label>
+                            <input type="text" id="account-form-name" name="name" value="" class="required-entry validation-passed">
+                        </div>
+
+                    </div>
+                    <div class="input-list">
+                        <label for="account-form-phone" class="required"><em>* </em>Số điện thoại</label>
+                        <input type="text" id="account-form-phone" name="phone" value="" class="required-entry validation-passed" style="float: none;">
+                        <label for="account-form-address" class="required"><em>* </em>Địa chỉ</label>
+                        <input type="text" id="account-form-address" name="address" value="" title="Địa chỉ 01" class="required-entry validation-passed">
+                    </div>
+
+                    <div class="clear"></div>
+                </div>
+                <div class="add-button add-button-new">
+                    <input type="submit" class="button button-red" value="Thêm địa chỉ mới">
+                    <input type="button" class="button button-reset" value="Hủy" style="float:right">
+                </div>
+            </form>
+        </div>
+        <a class="button  interactive  addnew btn-default" onclick="ShowForm();">Thêm địa chỉ mới</a>
+
+        <div></div>
+
+        <script type="text/javascript">
+
+            function ShowForm() {
+                jQuery('.row_form').hide();
+                jQuery('.row_info').show();
+                jQuery('.addnew').hide();
+                jQuery("#address-form").show();
+            }
+            jQuery('.button-reset').click(function (e) {
+                jQuery("#address-form").hide();
+                jQuery('.addnew').show();
+            });
+
+            function showEdit(id) {
+                jQuery('.row_form').hide();
+                jQuery('.row_info').show();
+                jQuery('.addnew').show();
+                jQuery('#row_' + id).hide();
+                jQuery('#form_id_' + id).show();
+            }
+
+            function cancelAddressForm(id) {
+                jQuery('.row_form').css('display', 'none');
+                jQuery('#row_' + id).show();
+            }
+
+        </script>
+
+
+
+    </div>
+</div>
+<style>
+
+    .account-overview-shipping-customer .add-button-new .button {
+        font-weight: 700;
+        font-size: 10px;
+        text-transform: uppercase;
+        text-align: center;
+        height: 30px;
+        border: 2px solid #333F48;
+        display: inline-block;
+        background-color: transparent;
+        padding: 0 15px;
+        line-height: 26px;
+        cursor: pointer;
+        width: calc(50% - 15px);
+        width: -moz-calc(50% - 15px);
+        width: -webkit-calc(50% - 15px);
+        width: -o-calc(50% - 15px);
+        margin-top: 15px;
+    }
+
+    .account-overview-shipping-customer .add-button-new .button-red {
+        color: #da291c;
+        border-color: #da291c;
+    }
+
+    .col-xs-1, .col-sm-1, .col-md-1, .col-lg-1, .col-xs-2, .col-sm-2, .col-md-2, .col-lg-2, .col-xs-3, .col-sm-3, .col-md-3, .col-lg-3, .col-xs-4, .col-sm-4, .col-md-4, .col-lg-4, .col-xs-5, .col-sm-5, .col-md-5, .col-lg-5, .col-xs-6, .col-sm-6, .col-md-6, .col-lg-6, .col-xs-7, .col-sm-7, .col-md-7, .col-lg-7, .col-xs-8, .col-sm-8, .col-md-8, .col-lg-8, .col-xs-9, .col-sm-9, .col-md-9, .col-lg-9, .col-xs-10, .col-sm-10, .col-md-10, .col-lg-10, .col-xs-11, .col-sm-11, .col-md-11, .col-lg-11, .col-xs-12, .col-sm-12, .col-md-12, .col-lg-12 {
+        position: relative;
+        min-height: 1px;
+        padding-right: 15px;
+        padding-left: 15px;
+    }
+
+    .account-overview-shipping-customer h5, .account-overview-shipping-customer h4 {
+        display: block;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 30px;
+        margin: 0;
+    }
+</style>
+

@@ -1,0 +1,74 @@
+﻿
+@using CNWeb.Models
+
+@model IEnumerable<Product_category> 
+
+<div class="ban-top">
+    <div class="container">
+        <div class="top_nav_left">
+            <nav class="navbar navbar-default">
+                <div class="container-fluid">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                    </div>
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse menu--shylock" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav menu__list">
+                            <li class="active menu__item"><a class="menu__link" href="/Home/Index">Trang Chủ <span class="sr-only">(current)</span></a></li>
+                            <li class=" menu__item"><a class="menu__link" href="/Home/About">Về Chúng Tôi</a></li>
+
+                            @foreach (var groupItem in Model.GroupBy(x => x.Category_type.Menu))
+                            {
+                                <li class="dropdown menu__item">
+                                    <a href="#" class="dropdown-toggle menu__link" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">@groupItem.Key.name<span class="caret"></span></a>
+                                    <ul class="dropdown-menu multi-column columns-3">
+                                        <div class="agile_inner_drop_nav_info">
+                                            <div class="col-sm-6 multi-gd-img1 multi-gd-text ">
+                                                <a href="/Home/Men"><img src="~/images/top2.jpg" alt=" " /></a>
+                                            </div>
+
+                                            @foreach (var ct in groupItem.Key.Category_type )
+                                            {
+                                                <div class="col-sm-3 multi-gd-img">
+                                                    <ul class="multi-column-dropdown">
+                                                        <a class="title_list" style="font-size: 18px;">@ct.name</a>
+
+                                                       @foreach (var pc in ct.Product_category)
+                                                        {
+                                                            <li>@Html.ActionLink(@pc.name, "Index", "Product", new { id = pc.id, check= ct.Menu.id==1 ? true: false  }, null)</li>
+                                                        }
+                                                    </ul>
+                                                </div>
+
+                                            }
+                                            <div class="clearfix"></div>
+                                        </div>
+                                    </ul>
+                                </li>
+
+                            }
+
+                            @*<li class=" menu__item"><a class="menu__link" href="/Home/Contact">Liên Hệ</a></li>*@
+                        <li class=" menu__item">
+                            @Html.RouteLink("Liên Hệ", "contact", null, new { @class = "menu__link" })
+                        </li>
+                        <li class=" menu__item">
+                            @Html.RouteLink("Blog", "blog", null, new { @class = "menu__link" })
+                        </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+
+        @*layout giở hàng*@
+            @Html.Action("GioHangPartial","Cart")
+        <div class="clearfix"></div>
+    </div>
+</div>

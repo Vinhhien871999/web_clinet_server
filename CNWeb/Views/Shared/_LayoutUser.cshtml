@@ -1,0 +1,87 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script >
+    $(document).ready(function () {
+        var path = window.location.pathname;        
+
+        if (path === '/thong-tin-ca-nhan') {
+            $("li.account>a").addClass('current');
+        }
+        if (path === '/thong-tin-the') {
+            $("li.cardview>a").addClass('current');
+        }
+        if (path === '/so-dia-chi') {
+            $("li.address_book>a").addClass('current');
+        }
+        if (path === '/thong-tin-don-hang') {
+            $("li.order_checking>a").addClass('current');
+        }
+
+    });
+</script>
+<div class="page-head_agile_info_w3l">
+    <div class="container">
+        <h3>Tài <span>Khoản</span></h3>
+        <!--/w3_short-->
+        <div class="services-breadcrumb">
+            <div class="agile_inner_breadcrumb">
+
+                <ul class="w3_short">
+                    <li><a href="/Home/Index">Trang Chủ</a><i>|</i></li>
+                    <li>Tài Khoản</li>
+                </ul>
+            </div>
+        </div>
+        <!--//w3_short-->
+    </div>
+</div>
+<div class="banner_bottom_agile_info">
+    <div class="container">
+        <div class="main-container col2-left-layout">
+            <div class="main">
+                @RenderBody()
+                <div class="col-left sidebar">
+                    <div class="col-left-first">
+                        <div class="block block-account">
+                            <div class="block-title">
+                                <strong><span>Tài khoản</span></strong>
+                            </div>
+                            <div class="block-content">
+                                <ul>
+  
+                                    <li class="account">
+                                        <a href="@Url.RouteUrl("user")">Tài khoản của tôi</a>
+                                    </li>
+
+                                    <li class="address_book">
+                                        <a href="@Url.RouteUrl("listaddress")">Sổ địa chỉ</a>
+                                    </li>
+
+                                    <li class="order_checking">
+                                        <a href="@Url.RouteUrl("infopayment")">Kiểm tra đơn hàng</a>
+                                    </li>
+
+                                    <li class="orders">
+                                        <a href="#">Lịch sử đơn hàng</a>
+                                    </li>
+
+                                    <li class="cardview">
+                                        <a href="@Url.RouteUrl("infocard")">Thông tin thẻ</a>
+                                    </li>
+                                    <li class="logout">
+                                        <a href="@Url.RouteUrl("logout")">Đăng xuất</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>

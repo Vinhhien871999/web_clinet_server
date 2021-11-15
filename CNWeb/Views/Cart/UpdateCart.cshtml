@@ -1,0 +1,79 @@
+﻿@using CNWeb.Models
+@model Cart_detail
+@{
+    ViewBag.Title = "UpdateCart";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@{
+    List<Cart_detail> lsItem = ViewBag.lsItem as List<Cart_detail>;
+}
+
+<h2>Sửa giỏ hàng</h2>
+
+<table class="table">
+    <tr>
+        <td>Mã SP</td>
+        <td>Tên SP</td>
+        <td>Hình ảnh</td>
+        <td>Số lượng</td>
+        <td>Đơn giá</td>
+        <td>Thành tiền</td>
+    </tr>
+    @foreach (var item in lsItem)
+    {
+        //Sản phẩm có mã Sp được chỉnh sửa gửi từ tham sô bên trang xem giỏ hàng
+        if (item.Product.id == Model.product_id)
+        {
+            using (Html.BeginForm("UpdateCart", "Cart"))
+            {
+                <tr>
+                    @Html.Hidden("cart_id", item.cart_id)
+                    @Html.Hidden("product_id", item.Product.id)
+
+                    <td>@item.Product.id</td>
+                    <td>@item.Product.product_name</td>
+                    <td><img src="@Url.Content("~/images/" + item.Product.photo.Split(';')[0])" height="50" width="50" /></td>
+                    <td>@Html.TextBox("quantity", item.quantity)</td>
+                    <td>@item.Product.price.ToString("#,##") VNĐ</td>
+                    <td>
+                        @Convert.ToInt32(
+                                  @item.Product.price * @item.quantity
+                               ).ToString("#,##") VNĐ
+                    </td>
+                    <td>
+                        <button class="btn btn-success" type="submit">Cập nhật</button>
+                        <input value="null"/>
+                        @Html.ActionLink("Xóa", "DeleteItemCart", new { @maSp = item.Product.id })
+
+                    </td>
+                   
+
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td>@item.Product.id</td>
+                <td>@item.Product.product_name</td>
+                <td><img src="@Url.Content("~/images/" + item.Product.photo.Split(';')[0])" height="50" width="50" /></td>
+                <td>@item.quantity</td>
+                <td>@item.Product.price.ToString("#,##") VNĐ</td>
+                <td>
+                    @Convert.ToInt32(
+                        @item.Product.price * @item.quantity
+
+                     ).ToString("#,##") VNĐ
+
+                </td>
+                <td>
+                    @Html.ActionLink("Sửa", "UpdateCart", new { @maSp = item.Product.id })
+                    @Html.ActionLink("Xóa", "DeleteItemCart", new { @maSp = item.Product.id })
+                </td>
+
+
+            </tr>
+        }
+    }
+</table>
+

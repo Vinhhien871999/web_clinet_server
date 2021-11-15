@@ -1,0 +1,34 @@
+﻿@using CNWeb.Models
+
+@model Receiver
+
+@if (Model != null)
+{
+    <div class="styles__StyledAddressForm-y1ursh-1 koCjgj">
+        <form method="post" action="/CheckOut/UpdateAddress">
+            <div class="form-container">
+                <div class="styles__FormItem-y1ursh-0 gLBfyC">
+                    <label>Họ tên</label><input type="text" name="name" placeholder="Nhập họ tên" maxlength="50" class="Input-sc-17i9bto-0 bYlDgr" value="@Model.name" />
+                </div>
+                <div class="styles__FormItem-y1ursh-0 gLBfyC">
+                    <label>Điện thoại di động</label>
+                    <input type="text" name="phone" placeholder="Nhập số điện thoại" class="Input-sc-17i9bto-0 bYlDgr" value="@Model.phone " />
+                </div>
+                <div class="styles__FormItem-y1ursh-0 gLBfyC">
+                    <label>Địa chỉ</label>
+                    <textarea type="textarea" name="address" placeholder="Ví dụ: 52, đường Trần Hưng Đạo" class="Input__TextArea-sc-17i9bto-1 doFXqy">@Model.address</textarea>
+                </div>
+                <div class="styles__FormItem-y1ursh-0 gLBfyC" style="margin-bottom: 0px">
+                    <div class="button-group">
+                        <button class="cancel">
+                            Huỷ bỏ
+                        </button><button type="submit" class="create-update update-address">Cập nhật</button>
+                    </div>
+                </div>
+            </div>
+            @Html.Hidden("id",Model.id)
+            @Html.Hidden("id_user",Model.id_user)
+        </form>
+    </div>
+}
+

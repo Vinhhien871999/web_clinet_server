@@ -1,0 +1,163 @@
+﻿@using CNWeb.Models
+@model IEnumerable<Receiver>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<main style="background: none">
+    <div class="Container-itwfbd-0 jFkAwY" style="width: 1170px">
+
+        <div class="AddressList__StyledAddressList-lm7k31-0 jNYLsd">
+            <h3 class="title">2. Địa chỉ giao hàng</h3>
+            <h5 class="address-list-text">
+                Chọn địa chỉ giao hàng có sẵn bên dưới:
+            </h5>
+            <div class="address-list">
+                @foreach (var add in Model)
+                {
+                    
+                        <div class="styles__StyledAddressItem-y17c35-0 hheNUT">
+                            <p class="name">@add.name</p>
+                            <p class="address" title="@add.address">
+                                Địa chỉ: @add.address
+                            </p>
+                            <p class="phone">Điện thoại: @add.phone</p>
+                            <p class="action">
+                                @Html.ActionLink("Giao đến địa chỉ này","Payment", new { @id = add.id },new{ @class = "btn saving-address" })
+                                @*<a href="/CheckOut/Payment"  class="btn saving-address">
+                                    Giao đến địa chỉ này
+                                </a>*@
+                                <button id="@add.id" type="button" class="btn edit-address">Sửa</button>
+                            </p>
+                        </div>
+                    
+                }
+            </div>
+        </div>
+
+        <p class="ShippingPage__AddNewAddress-sc-4zu5jt-0 gPtlxm">
+            Bạn muốn giao hàng đến địa chỉ khác?
+            <span>Thêm địa chỉ giao hàng mới</span>
+        </p>
+        @*// add address *@
+        <div class="update-address">
+            <div class="styles__StyledAddressForm-y1ursh-1 koCjgj" style="display:none">
+                <div class="form-container">
+                    <div class="styles__FormItem-y1ursh-0 gLBfyC">
+                        <label>Họ tên</label>
+                        <input type="text" name="full_name" placeholder="Nhập họ tên" maxlength="50" class="Input-sc-17i9bto-0 bYlDgr" value="" />
+                    </div>
+                    <div class="styles__FormItem-y1ursh-0 gLBfyC">
+                        <label>Điện thoại di động</label>
+                        <input type="text" name="telephone" placeholder="Nhập số điện thoại" class="Input-sc-17i9bto-0 bYlDgr" value="" />
+                    </div>
+                    <div class="styles__FormItem-y1ursh-0 gLBfyC">
+                        <label>Địa chỉ</label>
+                        <textarea type="textarea" name="street" placeholder="Ví dụ: 52, đường Trần Hưng Đạo" class="Input__TextArea-sc-17i9bto-1 doFXqy"></textarea>
+                    </div>
+                    <div class="styles__FormItem-y1ursh-0 gLBfyC" style="margin-bottom: 0px">
+                        <div class="button-group">
+                            <button class="cancel">
+                                Huỷ bỏ
+                            </button><button class="create-update add-address">Giao đến địa chỉ này</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<script>
+    $(document).ready(function () {
+        $('.add-address').click(function () {
+            var full_name = $('input[name="full_name"]').val();
+            var telephone = $('input[name="telephone"]').val();
+            var street = $('textarea[name="street"]').val()
+            $.ajax({
+                type: 'GET',
+                data: { name: full_name, phone: telephone, address: street },
+                url: '/CheckOut/AddAddress',
+                success: function (kq) {
+                    $('.address-list').append(kq);
+                    $('.koCjgj').css('display', 'none');
+                }
+            });
+        });
+
+    });
+</script>
+<!--/grids-->
+<div class="coupons">
+    <div class="coupons-grids text-center">
+        <div class="w3layouts_mail_grid">
+            <div class="col-md-3 w3layouts_mail_grid_left">
+                <div class="w3layouts_mail_grid_left1 hvr-radial-out">
+                    <i class="fa fa-truck" aria-hidden="true"></i>
+                </div>
+                <div class="w3layouts_mail_grid_left2">
+                    <h3>FREE SHIP</h3>
+                    <p>Giao hàng tận nơi, nhanh chóng</p>
+                </div>
+            </div>
+            <div class="col-md-3 w3layouts_mail_grid_left">
+                <div class="w3layouts_mail_grid_left1 hvr-radial-out">
+                    <i class="fa fa-headphones" aria-hidden="true"></i>
+                </div>
+                <div class="w3layouts_mail_grid_left2">
+                    <h3>Hổ trợ 24/7 </h3>
+                    <p>Đội ngũ nhân viên nhiệt tình, năng động</p>
+                </div>
+            </div>
+            <div class="col-md-3 w3layouts_mail_grid_left">
+                <div class="w3layouts_mail_grid_left1 hvr-radial-out">
+                    <i class="fa fa-shopping-bag" aria-hidden="true"></i>
+                </div>
+                <div class="w3layouts_mail_grid_left2">
+                    <h3>ĐẢM BẢO CHÁT LƯỢNG</h3>
+                    <p>Cam kết về chất lượng</p>
+                </div>
+            </div>
+            <div class="col-md-3 w3layouts_mail_grid_left">
+                <div class="w3layouts_mail_grid_left1 hvr-radial-out">
+                    <i class="fa fa-gift" aria-hidden="true"></i>
+                </div>
+                <div class="w3layouts_mail_grid_left2">
+                    <h3>COUPON QUÀ TẶNG MIỄN PHÍ</h3>
+                    <p>Nhiều quà tặng hấp dẫn</p>
+                </div>
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+
+    </div>
+</div>
+<!--grids-->
+<script>
+
+    //$(".edit-address").click(function () {
+    //    $(".koCjgj").slideDown(300);
+    //    $(".create-update").html("Cập Nhật");
+    //});
+    $(document).ready(function () {
+        $(".gPtlxm>span").click(function () {
+
+            $(".koCjgj").css("display", "block");
+        });
+
+        $(".edit-address").click(function () {
+            var id = $(this).attr('id');
+            $.ajax({
+                type: 'GET',
+                data: { id: id },
+                url: '/CheckOut/NewAddress',
+                success: function (item) {
+                    $(".update-address").html(item);
+                }
+            });
+        });
+    });
+
+
+
+</script>

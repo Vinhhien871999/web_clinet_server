@@ -1,0 +1,446 @@
+﻿
+.card, .card-header {
+    background-color: transparent !important;
+    border: none;
+    padding: 0 !important;
+    margin-bottom: 20px;
+}
+
+.card {
+    box-shadow: 0 2px 25px 0 rgba(110,130,208,.18);
+}
+
+.btn-link {
+    width: 100%;
+    height: 60px;
+    color: #000 !important;
+    font-weight: bold !important;
+    text-align: left !important;
+    text-decoration: none !important;
+}
+
+.card-body {
+    background: #E8EFEF;
+}
+
+.btn-link::after {
+    content: '\2212';
+    width: 35px;
+    font-size: 25px;
+    text-align: center;
+    border-radius: 5px;
+    right: 15px;
+    top: 11px;
+    position: absolute;
+    background-color: #e8eeff;
+}
+
+.btn-link.collapsed::after {
+    content: '\002B';
+}
+
+*:focus {
+    outline: none !important;
+}
+
+.btn {
+    font-size: 20px;
+}
+.card-body>p{
+    line-height:2;
+}
+
+.swatch {
+    padding: 0 0 20px 0;
+    width: 100%;
+    float: left;
+}
+
+    .swatch .header-size {
+        margin: 0 0 8px;
+        font-size: 16px;
+        text-align: left;
+        line-height: initial;
+    }
+        .swatch .header-size b {
+            float: right;
+            font-weight: normal;
+            text-decoration: underline;
+            cursor: pointer;
+            margin: 0 0 0 20px;
+        }
+    .swatch .select-swap {
+        display: inline-block;
+        vertical-align: middle;
+    }
+
+    .swatch .swatch-element {
+        display: inline-block;
+        position: relative;
+        vertical-align: bottom;
+    }
+    .swatch input {
+        display: none;
+    }
+
+input[type=checkbox], input[type=radio] {
+    box-sizing: border-box;
+    padding: 0;
+}
+
+button, input, optgroup, select, textarea {
+    margin: 0;
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+}
+
+.swatch .swatch-element label {
+    min-width: 44px;
+    height: 44px;
+    line-height: 40px;
+    position: relative;
+    border: 2px solid #ebe3e3;
+    font-size: 16px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out 0s;
+    -moz-transition: all 0.2s ease-in-out 0s;
+    -o-transition: all 0.2s ease-in-out 0s;
+    -webkit-transition: all 0.2s ease-in-out 0s;
+    -ms-transition: all 0.2s ease-in-out 0s;
+}
+
+.swatch .swatch-element label {
+    min-width: 44px;
+    height: 44px;
+    line-height: 40px;
+    position: relative;
+    border: 2px solid #ebe3e3;
+    font-size: 16px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out 0s;
+    -moz-transition: all 0.2s ease-in-out 0s;
+    -o-transition: all 0.2s ease-in-out 0s;
+    -webkit-transition: all 0.2s ease-in-out 0s;
+    -ms-transition: all 0.2s ease-in-out 0s;
+}
+
+.border-size {
+    border: 2px solid #ffc800;
+}
+
+.quantity-area {
+    /*margin: 0 0 40px 0;*/
+    display:inline-block;
+}
+.qty-btn {
+        background: white;
+        border: 1px solid #f3efef;
+        border-radius: 0;
+        width: 30px;
+        height: 30px;
+        line-height: 30px;
+        float: left;
+}
+.quantity-selector {
+        float: left;
+        width: 40px;
+        height: 30px;
+        text-align: center;
+        line-height: 40px;
+        border: none;
+        margin: 0 10px;
+        border-bottom: 1px solid #d9d9d9;
+} 
+.titleQuantity {
+    margin: 0 0 12px;
+    font-size: 16px;
+    text-align: left;
+    line-height: initial;
+    display: inline-block;
+}
+.swatch .swatch-element label.gt {
+    border: 2px solid #2fdab8;
+}
+
+.modal-content {
+    position: relative;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    width: 100%;
+    pointer-events: auto;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid rgba(0,0,0,.2);
+    border-radius: .3rem;
+    outline: 0;
+}
+.kRhner {
+    padding: 32px 0px 0px;
+}
+
+    .kRhner::after {
+        content: "";
+        border-bottom: 1px solid rgb(353, 340, 364);
+        display: block;
+        margin: 32px -40px 0px;
+    }
+
+    .kRhner .review-comment__avatar {
+        display: flex;
+        margin: 0px 0px 12px;
+    }
+
+    .kRhner .review-comment__avatar-thumb {
+        margin: 0px 8px 0px 0px;
+        width: 48px;
+        height: 48px;
+        background-size: cover;
+        border-radius: 50%;
+        position: relative;
+        z-index: 1;
+    }
+
+    .kRhner .review-comment__avatar-info {
+        font-size: 14px;
+        line-height: 20px;
+        display: flex;
+        flex-direction: column;
+        -webkit-box-pack: center;
+        justify-content: center;
+    }
+
+    .kRhner .review-comment__avatar-wrap {
+        display: flex;
+        -webkit-box-align: center;
+        align-items: center;
+    }
+
+    .kRhner .review-comment__avatar-name {
+        margin: 0px 8px 0px 0px;
+    }
+
+    .kRhner .review-comment__avatar-bought {
+        color: rgb(0, 153, 0);
+        display: flex;
+        -webkit-box-align: center;
+        align-items: center;
+    }
+
+    .kRhner .review-comment__avatar-icon {
+        width: 16px;
+        height: 16px;
+        background-color: rgb(0, 153, 0);
+        border-radius: 50%;
+        position: relative;
+        z-index: 1;
+        margin: 0px 5px 0px 0px;
+    }
+
+        .kRhner .review-comment__avatar-icon::before {
+            content: "";
+            width: 10px;
+            height: 5px;
+            border-left: 1px solid rgb(255, 255, 255);
+            border-bottom: 1px solid rgb(255, 255, 255);
+            position: absolute;
+            display: block;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -70%) rotate(-45deg);
+        }
+
+    .kRhner .review-comment__avatar-date-options {
+        display: flex;
+        -webkit-box-align: center;
+        align-items: center;
+    }
+
+    .kRhner .review-comment__avatar-date {
+        color: rgb(153, 153, 153);
+        flex-shrink: 0;
+    }
+
+    .kRhner .review-comment__avatar-options {
+        background-color: rgb(242, 242, 242);
+        color: rgb(153, 153, 153);
+        padding: 4px 8px;
+        font-size: 14px;
+        line-height: 20px;
+        margin: 0px 0px 0px 7px;
+        border-radius: 4px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 580px;
+    }
+
+        .kRhner .review-comment__avatar-options > span {
+            padding: 0px 10px;
+            border-left: 1px solid rgb(221, 221, 221);
+        }
+
+            .kRhner .review-comment__avatar-options > span:last-child {
+                padding-right: 0px;
+            }
+
+            .kRhner .review-comment__avatar-options > span:first-child {
+                padding-left: 0px;
+                border: 0px;
+            }
+
+    .kRhner .review-comment__title {
+        margin: 8px 0px;
+        font-size: 16px;
+        line-height: 24px;
+        font-weight: 500;
+    }
+
+    .kRhner .review-comment__content {
+        font-size: 14px;
+        line-height: 20px;
+        margin: 0px 0px 8px;
+    }
+
+    .kRhner .review-comment__labels {
+        margin: 0px 0px 14px;
+    }
+
+    .kRhner .review-comment__images {
+        display: flex;
+        flex-wrap: wrap;
+        margin: 0px -6px;
+    }
+
+    .kRhner .review-comment__image {
+        width: 158px;
+        height: 158px;
+        border-radius: 4px;
+        background-size: cover;
+        margin: 0px 6px 16px;
+        cursor: pointer;
+    }
+
+    .kRhner .review-comment__reply {
+        padding: 8px 16px 9px;
+        font-size: 14px;
+        line-height: 20px;
+        color: rgb(13, 92, 182);
+        font-weight: 500;
+        cursor: pointer;
+        display: inline-block;
+        user-select: none;
+    }
+
+.bAQjMT {
+    margin: 12px 0px;
+}
+
+    .bAQjMT .reply-comment__input {
+        border: 1px solid rgb(238, 238, 238);
+        padding: 12px;
+        border-radius: 4px;
+        resize: none;
+        width: 100%;
+        margin: 0px 0px 4px;
+        outline: 0px;
+    }
+
+textarea {
+    overflow: auto;
+}
+
+.bAQjMT .reply-comment__count {
+    font-size: 12px;
+    line-height: 1;
+    margin: 0px 0px 8px;
+    color: rgb(13, 92, 182);
+}
+
+.bAQjMT .reply-comment__submit {
+    background-color: rgb(253, 216, 53);
+    font-weight: 500;
+}
+
+.bAQjMT .reply-comment__submit, .bAQjMT .reply-comment__close {
+    padding: 10px 16px;
+    font-size: 14px;
+    line-height: 20px;
+    border-radius: 4px;
+    margin: 0px 8px 0px 0px;
+    cursor: pointer;
+    display: inline-block;
+    user-select: none;
+    border: 0px;
+    outline: 0px;
+}
+
+.kRhner .review-comment__sub-comments {
+    margin: 20px 0px 0px;
+    border-left: 1px solid rgb(238, 238, 238);
+    padding: 0px 0px 0px 16px;
+}
+
+.jhAMaS .review-sub-comment__content {
+    margin: 0px 0px 8px;
+    font-size: 14px;
+    line-height: 20px;
+}
+
+.jhAMaS .review-sub-comment__avatar {
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+}
+
+.jhAMaS .review-sub-comment__avatar-thumb {
+    width: 24px;
+    height: 24px;
+    background-size: cover;
+    margin: 0px 6px 0px 0px;
+    border-radius: 50%;
+}
+
+.jhAMaS .review-sub-comment__avatar-date {
+    color: rgb(153, 153, 153);
+    margin: 0px 0px 0px 8px;
+    padding: 0px 0px 0px 10px;
+    position: relative;
+    z-index: 1;
+}
+
+    .jhAMaS .review-sub-comment__avatar-date::before {
+        content: "";
+        height: 4px;
+        width: 4px;
+        background-color: rgb(238, 238, 238);
+        border-radius: 50%;
+        position: absolute;
+        top: 50%;
+        left: 0px;
+        margin: -2px 0px 0px;
+    }
+
+.kRhner .review-comment__avatar-thumb > span {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    color: rgb(153, 153, 153);
+    background-color: rgb(211, 210, 211);
+    font-size: 18px;
+    font-weight: 500;
+    text-align: center;
+    line-height: 48px;
+    border-radius: 50%;
+    user-select: none;
+}
+
+a:hover{
+    color:Highlight;
+}

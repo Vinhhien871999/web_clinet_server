@@ -1,0 +1,57 @@
+D:\Data\HocTap\Tai lieu\GitHub\QuanLyKho\DAO\bin\Debug\DAO.dll
+D:\Data\HocTap\Tai lieu\GitHub\QuanLyKho\DAO\bin\Debug\DAO.pdb
+D:\Data\HocTap\Tai lieu\GitHub\QuanLyKho\DAO\obj\Debug\DAO.dll
+D:\Data\HocTap\Tai lieu\GitHub\QuanLyKho\DAO\obj\Debug\DAO.pdb
+D:\Data\HocTap\Tai lieu\GitHub\QuanLyKho\DAO\bin\Debug\DTO.dll
+D:\Data\HocTap\Tai lieu\GitHub\QuanLyKho\DAO\bin\Debug\DTO.pdb
+D:\Data\HocTap\Tai lieu\GitHub\QuanLyKho\DAO\obj\Debug\DAO.csprojResolveAssemblyReference.cache
+C:\Users\DELL PC\Desktop\baitap_nhom\QuanLyKho\DAO\bin\Debug\DAO.dll
+C:\Users\DELL PC\Desktop\baitap_nhom\QuanLyKho\DAO\bin\Debug\DAO.pdb
+C:\Users\DELL PC\Desktop\baitap_nhom\QuanLyKho\DAO\bin\Debug\DTO.dll
+C:\Users\DELL PC\Desktop\baitap_nhom\QuanLyKho\DAO\bin\Debug\DTO.pdb
+C:\Users\DELL PC\Desktop\baitap_nhom\QuanLyKho\DAO\obj\Debug\DAO.dll
+C:\Users\DELL PC\Desktop\baitap_nhom\QuanLyKho\DAO\obj\Debug\DAO.pdb
+C:\Users\DELL PC\Desktop\baitap_nhom\QuanLyKho\DAO\obj\Debug\DAO.csprojResolveAssemblyReference.cache
+C:\Users\TuanAnh\Desktop\QuanLyKho(ok)\DAO\bin\Debug\DAO.dll
+C:\Users\TuanAnh\Desktop\QuanLyKho(ok)\DAO\bin\Debug\DAO.pdb
+C:\Users\TuanAnh\Desktop\QuanLyKho(ok)\DAO\bin\Debug\DTO.dll
+C:\Users\TuanAnh\Desktop\QuanLyKho(ok)\DAO\bin\Debug\DTO.pdb
+C:\Users\TuanAnh\Desktop\QuanLyKho(ok)\DAO\obj\Debug\DAO.csprojResolveAssemblyReference.cache
+C:\Users\TuanAnh\Desktop\QuanLyKho(ok)\DAO\obj\Debug\DAO.dll
+C:\Users\TuanAnh\Desktop\QuanLyKho(ok)\DAO\obj\Debug\DAO.pdb
+C:\Users\dang tien\Desktop\New folder (7)\QuanLyKho-master\DAO\bin\Debug\DAO.dll
+C:\Users\dang tien\Desktop\New folder (7)\QuanLyKho-master\DAO\bin\Debug\DAO.pdb
+C:\Users\dang tien\Desktop\New folder (7)\QuanLyKho-master\DAO\bin\Debug\DTO.dll
+C:\Users\dang tien\Desktop\New folder (7)\QuanLyKho-master\DAO\bin\Debug\DTO.pdb
+C:\Users\dang tien\Desktop\New folder (7)\QuanLyKho-master\DAO\obj\Debug\DAO.csprojAssemblyReference.cache
+C:\Users\dang tien\Desktop\New folder (7)\QuanLyKho-master\DAO\obj\Debug\DAO.csproj.CoreCompileInputs.cache
+C:\Users\dang tien\Desktop\New folder (7)\QuanLyKho-master\DAO\obj\Debug\DAO.csproj.CopyComplete
+C:\Users\dang tien\Desktop\New folder (7)\QuanLyKho-master\DAO\obj\Debug\DAO.dll
+C:\Users\dang tien\Desktop\New folder (7)\QuanLyKho-master\DAO\obj\Debug\DAO.pdb
+D:\C#\QLKho\QuanLyKho\DAO\bin\Debug\DAO.dll
+D:\C#\QLKho\QuanLyKho\DAO\bin\Debug\DAO.pdb
+D:\C#\QLKho\QuanLyKho\DAO\bin\Debug\DTO.dll
+D:\C#\QLKho\QuanLyKho\DAO\bin\Debug\DTO.pdb
+D:\C#\QLKho\QuanLyKho\DAO\obj\Debug\DAO.csprojAssemblyReference.cache
+D:\C#\QLKho\QuanLyKho\DAO\obj\Debug\DAO.csproj.CoreCompileInputs.cache
+D:\C#\QLKho\QuanLyKho\DAO\obj\Debug\DAO.csproj.CopyComplete
+D:\C#\QLKho\QuanLyKho\DAO\obj\Debug\DAO.dll
+D:\C#\QLKho\QuanLyKho\DAO\obj\Debug\DAO.pdb
+D:\Thuc Tap Nhom\New folder\Tri\QuanLyKho\DAO\bin\Debug\DAO.dll
+D:\Thuc Tap Nhom\New folder\Tri\QuanLyKho\DAO\bin\Debug\DAO.pdb
+D:\Thuc Tap Nhom\New folder\Tri\QuanLyKho\DAO\bin\Debug\DTO.dll
+D:\Thuc Tap Nhom\New folder\Tri\QuanLyKho\DAO\bin\Debug\DTO.pdb
+D:\Thuc Tap Nhom\New folder\Tri\QuanLyKho\DAO\obj\Debug\DAO.csprojAssemblyReference.cache
+D:\Thuc Tap Nhom\New folder\Tri\QuanLyKho\DAO\obj\Debug\DAO.csproj.CoreCompileInputs.cache
+D:\Thuc Tap Nhom\New folder\Tri\QuanLyKho\DAO\obj\Debug\DAO.csproj.CopyComplete
+D:\Thuc Tap Nhom\New folder\Tri\QuanLyKho\DAO\obj\Debug\DAO.dll
+D:\Thuc Tap Nhom\New folder\Tri\QuanLyKho\DAO\obj\Debug\DAO.pdb
+C:\Users\admin\Desktop\Thuctapnhom\QuanLyKho\DAO\bin\Debug\DAO.dll
+C:\Users\admin\Desktop\Thuctapnhom\QuanLyKho\DAO\bin\Debug\DAO.pdb
+C:\Users\admin\Desktop\Thuctapnhom\QuanLyKho\DAO\bin\Debug\DTO.dll
+C:\Users\admin\Desktop\Thuctapnhom\QuanLyKho\DAO\bin\Debug\DTO.pdb
+C:\Users\admin\Desktop\Thuctapnhom\QuanLyKho\DAO\obj\Debug\DAO.csprojAssemblyReference.cache
+C:\Users\admin\Desktop\Thuctapnhom\QuanLyKho\DAO\obj\Debug\DAO.csproj.CoreCompileInputs.cache
+C:\Users\admin\Desktop\Thuctapnhom\QuanLyKho\DAO\obj\Debug\DAO.csproj.CopyComplete
+C:\Users\admin\Desktop\Thuctapnhom\QuanLyKho\DAO\obj\Debug\DAO.dll
+C:\Users\admin\Desktop\Thuctapnhom\QuanLyKho\DAO\obj\Debug\DAO.pdb

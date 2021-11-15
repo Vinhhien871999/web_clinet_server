@@ -1,0 +1,111 @@
+﻿@using CNWeb.Models
+@model List<Cart_detail>
+
+@{
+    ViewBag.Title = "WatchCart";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@if (Model == null || Model.Count() == 0)
+{
+    <h1>@ViewBag.Error</h1>
+}
+else
+{
+    int totalPrice = ViewBag.totalPrice;
+
+    <table class="table">
+        <tr>
+            <td>Mã SP</td>
+            <td>Tên SP</td>
+            <td>Hình ảnh</td>
+            <td>Số lượng</td>
+            <td>Màu sắc</td>
+            <td>Size</td>
+            <td>Đơn giá</td>
+            <td>Thành tiền</td>
+
+        </tr>
+        @for (int i = 0; i < Model.Count; i++)
+        {
+            <tr>
+                <td>@Model[i].product_id</td>
+                @*<td>@Model[i].Product.product_name</td>*@
+                <td><img src="@Url.Content("~/images/" + Model[i].Product.photo.Split(';')[0])" height="50" width="50" /></td>
+                <td>@Model[i].quantity</td>
+                <td>1000000 VNĐ</td>
+                <td>
+                    @Convert.ToInt32(
+                        @Model[i].Product.price * Model[i].quantity
+
+                     ).ToString("#,##") VNĐ
+
+                </td>
+                <td>
+                    @Html.ActionLink("Sửa", "UpdateCart", new { @maSp = Model[i].Product.id }, new { @class = "btn btn-success" })
+                    @Html.ActionLink("Xóa", "DeleteItemCart", new { @maSp = Model[i].Product.id }, new { @class = "btn btn-danger" })
+                </td>
+
+
+            </tr>
+        }
+    </table>
+    <div class="col-lg-12" style="text-align:" center"">
+        @using (Html.BeginForm())
+        {
+            <button type="submit" class="btn btn-primary" style="text-align:right">
+                Đặt hàng
+            </button>
+            @Html.ActionLink("Mua tiếp", "Index", "Home", null, new { @class = "btn btn-warning" });
+        }
+
+    </div>
+
+}
+
+@*Thiết kế Form lưu thông tin cho khách vãn lai*@
+@*<div class="col-md-8 address_form">
+        <h4>Địa chỉ giao hàng</h4>
+        <form action="#" class="creditly-card-form shopf-sear-headinfo_form">
+            <div class="creditly-wrapper wrapper">
+                <div class="information-wrapper">
+                    <div class="first-row form-group">
+                        <div class="controls">
+                            <label class="control-label">Họ tên: </label>
+                            <input class="billing-address-name form-control" type="text" name="name" placeholder="Họ tên">
+                        </div>
+                        <div class="card_number_grids">
+                            <div class="card_number_grid_left">
+                                <div class="controls">
+                                    <label class="control-label">Số điện thoại:</label>
+                                    <input class="form-control" type="text" placeholder="Số điện thoại">
+                                </div>
+                            </div>
+                            <div class="card_number_grid_right">
+                                <div class="controls">
+                                    <label class="control-label">Địa chỉ </label>
+                                    <input class="form-control" type="text" placeholder="Địa chỉ">
+                                </div>
+                            </div>
+                            <div class="clear"> </div>
+                        </div>
+                        <div class="controls">
+                            <label class="control-label">Thành phố: </label>
+                            <input class="form-control" type="text" placeholder="Thành phố">
+                        </div>
+                        <div class="controls">
+                            <label class="control-label">Loại địa chỉ: </label>
+                            <select class="form-control option-fieldf">
+                                <option>Văn phòng</option>
+                                <option>Nhà</option>
+                                <option>Doanh nghiệp</option>
+
+                            </select>
+                        </div>
+                    </div>
+                    <button class="submit check_out">Đặt Hàng</button>
+                </div>
+            </div>
+        </form>
+    </div>*@

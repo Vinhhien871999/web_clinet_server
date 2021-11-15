@@ -1,0 +1,117 @@
+﻿
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<main class="main-wrapper">
+    <section id="template-login" class="wrapper-account">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="wrapper-customer">
+                        <div id="login-form">
+                            <h1 class="title-box-login">
+                                Đăng nhập
+                            </h1>                           
+                            @using(Html.BeginForm("Login","Home",FormMethod.Post))
+                            {
+                                    <div class="input-form">
+                                        <input oninvalid="this.setCustomValidity('Vui lòng nhập Email của bạn!')" oninput="setCustomValidity('')" required="" type="email" name="email" placeholder="Email" value="">
+                                    </div>
+                                    <div class="input-form">
+                                        <input oninvalid="this.setCustomValidity('Vui lòng nhập Mật khẩu của bạn!')" oninput="setCustomValidity('')" required="" type="password" name="password" placeholder="Mật khẩu" value="">
+                                    </div>
+                                    <h3 style="font-weight:bold; color:red;text-align:left;" id="ThongBao" >@ViewBag.ThongBao</h3>
+                                    <div class="action-customer d-flex justify-content-between align-items-center">
+                                        <button class="button button-normal" id="login-form-submit" name="login-form-submit" type="submit" value="Đăng nhập"><span>Đăng nhập</span></button>
+                                        <span>Bạn chưa là thành viên? <a href="@Url.RouteUrl("register")">Đăng ký ngay</a></span>
+                                    </div>
+                                    <div class="action-customer-bellow">
+                                        <a href="javascript:void(0)" onclick="showRecoverPasswordForm();return false;" class="forgotPass">Quên mật khẩu?</a>
+                                        <a href="javascript:void(0)" onclick="showFormPhone();return false;">Đăng nhập bằng Số điện thoại?</a>
+                                    </div>                               
+                            }
+
+                        </div>
+                        <div id="recover-password" style="display:none;" class="userbox">
+                            <h2 class="title-box-login">
+                                Quên mật khẩu
+                            </h2>
+                            <p class="des-userbox">
+                                Nhập email của bạn để nhận hướng dẫn về cách đặt lại mật khẩu của bạn
+                            </p>
+                            <form method="post" action="/Home/SendCode">
+                                <div class="input-form">
+                                    <input id="email" oninvalid="this.setCustomValidity('Vui lòng nhập Email của bạn!')" oninput="setCustomValidity('')" type="email" name="email" placeholder="Email của bạn" value="">
+                                </div>
+                                <div class="action-customer d-flex justify-content-between align-items-center">
+                                    <button class="button button-normal" type="submit" ><span>Gửi</span></button>
+                                    <a href="javascript:void(0)" onclick="hideRecoverPasswordForm(); return false;">Hủy</a>
+                                </div>                                
+                            </form>
+                        </div>                        
+                        <div id="input-otp" style="display: none;" class="userbox">
+                            <h2 class="title-box-login">
+                                Nhập mã OTP
+                            </h2>
+                            <form method="post" action="#" id="form_otp">
+                                <div class="input-form">
+                                    <input oninvalid="this.setCustomValidity('Vui lòng nhập OTP Code!')" oninput="setCustomValidity('')" required="" placeholder="OTP Code" value="" id="otp_code" name="otp_code">
+                                    <input id="session_info" name="session_info" type="hidden" value="">
+                                </div>
+                                <button class="button button-normal"><span>Xác thực mã OTP</span></button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script>
+        function showRecoverPasswordForm() {
+            document.getElementById('recover-password').style.display = 'block';
+            document.getElementById('login-form').style.display = 'none';
+        }
+        function hideRecoverPasswordForm() {
+            document.getElementById('recover-password').style.display = 'none';
+            document.getElementById('login-form').style.display = 'block';
+        }
+        function showFormPhone() {
+            document.getElementById('login-form').style.display = 'none';
+            document.getElementById('login-otp').style.display = 'block';
+        }
+        function hideLoginOtpForm() {
+            document.getElementById('login-otp').style.display = 'none';
+            document.getElementById('login-form').style.display = 'block';
+        }
+        function showConfirmOtpForm() {
+            document.getElementById('input-otp').style.display = 'block';
+            document.getElementById('recover-password').style.display = 'none';            
+        }
+        $("#phone_number").change(function () {
+            var val = $(this).val();
+            if (val.length == 0) {
+                $(this).val("+84");
+            }
+            var a = val.slice(3, 4);
+            var b = val.slice(0, 1);
+            var c = val.substring(1);
+            if (a == 0 && val != '') {
+                alert("Số điện thoại nhập sai định dạng!");
+                $(this).val("+84");
+            }
+            if (b == 0) {
+                $(this).val("+84" + c);
+            }
+        });
+        $("#phone_number").focus(function () {
+            var val = $(this).val();
+            if (val == '') {
+                $(this).val("+84");
+            }
+        });        
+    </script>
+</main>

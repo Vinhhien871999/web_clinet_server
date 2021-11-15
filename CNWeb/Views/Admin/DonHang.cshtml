@@ -1,0 +1,90 @@
+﻿@model IEnumerable<CNWeb.Models.formPayment>
+
+@{
+    ViewBag.Title = "DonHang";
+    Layout = "~/Views/Shared/admin_layout.cshtml";
+}
+
+<h2>Danh sách đơn hàng</h2>
+<table class="table">
+    <tr>
+        <th>
+            id
+        </th>
+        <th>
+            Tổng tiền
+        </th>
+        <th>
+            Tiền ship
+        </th>
+        <th>
+            Phương thức thanh toán
+        </th>
+        <th>
+            Ngày tạo
+        </th>
+        <th>
+            Tên người vận chuyển
+        </th>
+        <th>
+            Số điện thoại
+        </th>
+        <th>
+            Tên người nhận hàng
+        </th>
+        <th>
+            Số điện thoại
+        </th>
+        <th>
+            Địa chỉ giao hàng
+        </th>
+        <th>
+            Trạng thái
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.id)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.total)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.money_ship)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.typePayment)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.create_at)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.tenNVC)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.SDTNVC)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.tenNguoiNhan)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.SDTNguoiNhan)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.DCGiaoHang)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.status)
+    </td>
+    <td>
+        @Html.ActionLink("Chi tiết", "ChiTietDonHang", new { @id = item.id }) |
+        @Html.ActionLink("Xác nhận", "XacNhanDonHang", new { @id = item.id }) |
+        @Html.ActionLink("Hủy", "HuyDonHang", new { @id = item.id })
+    </td>
+</tr>
+}
+
+</table>

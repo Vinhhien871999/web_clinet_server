@@ -1,0 +1,124 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+@model CNWeb.Models.User
+
+
+<div class="col-main">
+    <div id="loading-mask">
+        <div class="background-overlay"></div>
+        <p id="loading_mask_loader" class="loader">
+            <i class="ajax-loader large animate-spin"></i>
+        </p>
+    </div>
+    <div class="my-account">
+
+        <div class="customer-account-index-content">
+            <div class="page-title">
+                <h1>Chỉnh sửa thông tin tài khoản</h1>
+            </div>
+            <div class="page-description">
+                Chỉnh sửa thông tin chi tiết sẽ giúp bạn tiết kiệm được rất
+                nhiều thời gian trong quá trình mua hàng, hoàn thanh thanh toán
+            </div>
+            <form action="" method="post" id="form-validate" class="scaffold-form" >
+                <div class="fieldset">
+
+                    <ul class="form-list">
+                        <li class="fields">
+                            <div class="customer-name">
+                                <div class="field name-firstname">
+                                    <label for="name" class="required">Họ tên</label>
+                                    <div class="input-box">
+                                        <input type="text" id="name" name="name" value="@Model.name" title="Họ tên" maxlength="255" class="input-text required-entry" placeholder="Nhập họ và tên" required />
+                                    </div>
+
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <label for="email">Địa chỉ email</label>
+                            <div class="input-box">
+                                <input type="email" name="email" id="app_email" value="@Model.email" title="Địa chỉ email" class="input-text validate-email" placeholder="Nhập địa chỉ Email" required />
+                            </div>
+
+                            <script>
+                                if ($('input[name="email"]').val().length > 0) {
+                                    $('input[name="email"]').attr("disabled", true);
+                                }
+                            </script>
+                        </li>
+                        <li><i><small>Để thay đổi thông tin email, vui lòng liên hệ bộ phận CSKH qua hotline 1800.6061 nhánh 2 (miễn phí)</small></i></li>
+
+                        <li>
+                            <div class="form-group input-phone">
+                                <label for="email" class="required">Số điện thoại</label>
+                                <div class="input-box">
+                                    <input type="text" name="phone" value="@Model.phone" id="phone" class="input-text required-entry" placeholder="Nhập số điện thoại" onchange="validateInput()" required />
+                                </div>
+                            </div>
+
+                            @*Check phone*@
+                            <script>
+
+
+                            </script>
+                            @*===================================*@
+                        <li class="control">
+                            <input type="checkbox" name="change_password" id="change_password" value="1" title="Thay đổi mật khẩu" class="checkbox" /><label for="change_password">Thay đổi mật khẩu</label>
+                        </li>
+
+                    </ul>
+                </div>
+                <script type="text/javascript">
+                    $(document).ready(function () {
+                        $('input[type="checkbox"]').click(function () {
+                            if (this.checked) {
+                                $(".fieldset-show").slideDown(1000);
+                            } else {
+                                $(".fieldset-show").slideUp(1000)
+                            }
+
+                        });
+                    });
+
+                </script>
+                <div class="fieldset-show" style="display: none">
+                    <ul class="form-list">
+                        <li class="fields">
+                            <label for="current_password" class="required"><em>*</em>Mật khẩu hiện tại</label>
+                            <div class="input-box">
+                                <!-- This is a dummy hidden field to trick firefox from auto filling the password -->
+                                <input type="password" title="Mật khẩu hiện tại" class="input-text required-entry" name="password" id="password" />
+                            </div>
+                        </li>
+                        <li class="fields">
+                            <div class="field">
+                                <label for="password" class="required"><em>*</em>Mật khẩu mới</label>
+                                <div class="input-box">
+                                    <input type="password" title="Mật khẩu mới" class="input-text required-entry validate-password" name="newpassword" id="newpassword" />
+                                </div>
+                            </div>
+                            <div class="field">
+                                <label for="confirmation" class="required"><em>*</em>Xác nhận mật khẩu mới</label>
+                                <div class="input-box">
+                                    <input type="password" title="Xác nhận mật khẩu mới" class="input-text required-entry validate-cpassword" name="confirmation" id="confirmation" />
+                                </div>
+                            </div>
+                        </li>
+
+                    </ul>
+                </div>
+                <i><small style="color:red;font-weight:bold">@ViewBag.Error</small></i>
+                <div class="buttons-set">
+                    <button type="submit" title="Lưu" class="button" id="save" style="width:100%">
+                        <span><span>Lưu</span></span>
+                    </button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>

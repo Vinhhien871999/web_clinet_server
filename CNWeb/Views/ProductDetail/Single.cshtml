@@ -1,0 +1,612 @@
+﻿@using CNWeb.Models
+@model IEnumerable<Comment>
+
+@{
+    ViewBag.Title = "Single";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@{
+    var data = ViewBag.ProductDetail;
+    var spLq = ViewBag.SameProduct;
+    List<Color> listColor = new List<Color>(data.Colors);
+    List<Size> listSize = new List<Size>(data.Sizes);
+
+}
+
+<!--/single_page-->
+<!-- /banner_bottom_agile_info -->
+<div class="page-head_agile_info_w3l">
+    <div class="container">
+        <h3>Sản <span>Phẩm </span></h3>
+        <!--/w3_short-->
+        <div class="services-breadcrumb">
+            <div class="agile_inner_breadcrumb">
+
+                <ul class="w3_short">
+                    <li><a href="/Home/Index">Trang Chủ</a><i>|</i></li>
+                    <li>Sản Phẩm</li>
+                </ul>
+            </div>
+        </div>
+        <!--//w3_short-->
+    </div>
+</div>
+
+<!-- banner-bootom-w3-agileits -->
+<div class="banner-bootom-w3-agileits">
+    <div class="container">
+        <div class="col-md-4 single-right-left ">
+            <div class="grid images_3_of_2">
+                <div class="flexslider">
+
+                    <ul class="slides">
+                        @{
+                            string[] lsPhoto = data.photo.Split(';');
+
+                            for (int i = 0; i < 3; i++)
+                            {
+                                try
+                                {
+                                    <li data-thumb="/images/@lsPhoto[i]">
+
+                                        <div class="thumb-image"> <img src="/images/@lsPhoto[i]" data-imagezoom="true" class="img-responsive"> </div>
+                                    </li>
+                                }
+                                catch (Exception ex)
+                                {
+                                    <li data-thumb="http://placehold.it/400x400">
+                                        <div class="thumb-image"> <img src="http://placehold.it/400x400" data-imagezoom="true" class="img-responsive"> </div>
+                                    </li>
+                                }
+
+                            }
+                        }
+                    </ul>
+
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8 single-right-left simpleCart_shelfItem">
+            <h3>@data.product_name</h3>
+            <p><span class="item_price">@Convert.ToInt32(data.price - data.price * data.discount / 100).ToString("#,##") VNĐ</span> <del>- @Convert.ToInt32(data.price).ToString("#,##") VNĐ</del></p>
+            <div class="rating1">
+                <span class="starRating">
+                    @{
+                        var x = data.rating;
+
+
+                        for (int i = 5; i >= 0; i--)
+                        {
+                            <input class="rating" id="rating @i" type="radio" name="rating" value="@i">
+                            <label for="rating @i">@i</label>
+                        }
+
+                        <script>
+                            $(document).ready(function () {
+                                $('input[value=@x][name="rating"]').prop("checked", true);
+                            });
+
+                        </script>
+                    }
+                </span>
+            </div>
+            @*<div class="description">
+                <h5>Kiểm tra giao hàng, thanh toán khi nhân hàng</h5>
+                <form>
+                    <input type="text" value="Nhập code" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Nhập code';}" required="">
+                    <input type="submit" value="Kiểm tra">
+                </form>
+            </div>*@
+            <div class="swatch">
+                <div class="header-size">
+                    Trạng thái :
+                    @{
+                        if (data.stock > 0)
+                        {
+                            //<span>Còn @data.stock sản phẩm</span>
+                            <span>Còn hàng</span>
+                        }
+                        else
+                        {
+                            <span>Hết hàng</span>
+                        }
+                    }
+                </div>
+
+                <div class="clearfix"> </div>
+            </div>
+            <!--/Giới Tính:</-->
+            <div id="variant-swatch-1" class="swatch clearfix" data-option="option2" data-option-index="1">
+                <div class="header-size">
+                    Giới tính
+                </div>
+                <div class="select-swap">
+                    <div data-value="Men" class="n-sd swatch-element men">
+                        <input class="variant-1" id="swatch-1-men" type="radio" name="option2" value="Men" data-vhandle="men" checked="">
+                        <label for="swatch-1-men" class="gt">
+                            @if (data.sex == 1)
+                            {
+                                <span>Nam</span>
+                            }
+                            else
+                            {
+                                <span>Nữ</span>
+                            }
+
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <!--/Giới tính:</-->
+            <!--/Chọn Màu:</-->
+            <div class="occasional">
+                <h5>Màu Sắc :</h5>
+                @foreach (Color color in listColor)
+                {
+                    <div class="colr ert">
+                        <label class="radio"><input type="radio" name="color" value="@color.id"><i></i>@color.type</label>
+                    </div>
+                }
+                <div class="clearfix"> </div>
+            </div>
+            <!--/Chọn Màu:</-->
+            @*Chọn SIZE:*@
+            <script>
+                $(document).ready(function () {
+                    $('.sd').click(function () {
+                        $('.sd').css('border', 'none')
+                        $(this).css("border", "2px solid #2fdab8");
+
+                    });
+                });
+            </script>
+            <div id="variant-swatch-2" class="swatch clearfix" data-option="option3" data-option-index="2">
+                <div class="header-size">
+                    <h5 style="font-size:16px">Kích thước: </h5>
+                    <b data-toggle="modal" data-target="#exampleModalCenter" class="guideSize">Hướng dẫn chọn size</b>
+                </div>
+
+                <div class="select-swap">
+                    @foreach (Size size in listSize)
+                    {
+                        <div data-value="@size.id" class="n-sd swatch-element size-variant s variant-3 modifyClick">
+                            <input class="variant-2" id="swatch-2-@size.type" type="radio" name="option3" value="@size.id">
+                            <label for="swatch-2-@size.type" class="sd">
+                                <span>@size.type</span>
+                            </label>
+                        </div>
+                    }
+                </div>
+            </div>
+            <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Hướng dẫn chọn size</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="size-page">
+                                <p></p><p style="text-align: center;"><span style="font-size: 15pt;"><strong>Dành cho nam:</strong></span></p><p><img style="max-width:100%" src="https://file.hstatic.net/1000184601/file/men-top_7b7d2f48154d4d718e9bdd890f37a00f.png"></p><p><img style="max-width:100%" src="https://file.hstatic.net/1000184601/file/men-bottom_30609bb2a6ba4524acb244b4e6d6c642.png"></p><p style="text-align: center;"><span style="font-size: 15pt;"><strong>Dành cho nữ:</strong></span></p><p><img style="max-width:100%" src="https://file.hstatic.net/1000184601/file/women-top_7eba2c9240d04274ac5c479e6c75ab50.png"></p><p><img style="max-width:100%" src="https://file.hstatic.net/1000184601/file/women-bottom_875140a698234038ad4280b18f5a914e.png"></p><p></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /Chọn Size -->
+            <!-- /Chọn Số Lượng -->
+            <script>
+                $(document).ready(function () {
+                    $('.plusBtn').click(function () {
+                        let quatity = getQuatity();
+                        quatity += 1;
+                        $('#quantity').prop("value", quatity);
+                    });
+                    $('.minusBtn').click(function () {
+                        let quatity = getQuatity();
+                        if (quatity > 1) {
+                            quatity -= 1;
+                            $('#quantity').prop("value", quatity);
+                        }
+
+                    });
+                });
+                function getQuatity() {
+                    return parseInt($('#quantity').prop("value"));
+                }
+            </script>
+            <div class="selector-actions">
+                <span class="titleQuantity">Số lượng: </span>
+                <div class="quantity-area clearfix">
+                    <input type="button" value="-" class="minusBtn qty-btn">
+                    <input type="text" id="quantity" name="quantity" value="1" min="1" class="quantity-selector">
+                    <input type="button" value="+" class="plusBtn qty-btn">
+                </div>
+            </div>
+            <!-- /Chọn số lượng -->
+
+            <div class="occasion-cart">
+                <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out button2">
+                    <form action="/Cart/AddCart" method="post">
+                        <input name="color" value="" type="hidden" />
+                        <input name="size" value="" type="hidden" />
+                        <input name="maSp" value="" type="hidden" />
+                        <input name="sl" value="" type="hidden" />
+                        <input name="url" value="@Request.Url.ToString()" type="hidden" />
+
+                        <button class="add-cart1 btn btn-danger" type="submit" id="@data.id">Thêm giỏ hàng</button>
+                    </form>
+                    
+
+
+                </div>
+
+            </div>
+
+        </div>
+        <script>
+    $(document).ready(function () {
+
+        $(".add-cart1").click(function () {            
+            var id = $(this).attr('id');
+            var id_size = $("input[name='option3']:checked").val();
+            var id_color = $("input[name='color']:checked").val();
+            var sl = $("input[id='quantity']").val();
+            if (id_size === undefined || id_color === undefined) {
+                alert('Chọn Kích thước và Màu sắc!!!');
+                return false;
+            }            
+
+            $('input[name="color"]').val(id_color);
+            $('input[name="size"]').val(id_size);
+            $('input[name="maSp"]').val(id);
+            $('input[name="sl"]').val(sl);
+            
+                      
+        });
+    });
+        </script>
+        <div class="clearfix"> </div>
+        <!-- /new_arrivals -->
+        <div class="responsive_tabs_agileits">
+            <div id="accordion">
+                <div class="card">
+                    <div class="card-header" id="headingTwo">
+                        <h5 class="mb-0">
+                            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                Mô tả sản phẩm
+                            </button>
+                        </h5>
+                    </div>
+                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                        <div class="card-body">
+                            @{
+                                if (data.description != null)
+                                {
+                                    String s = data.description;
+                                    string[] words = s.Split('.');
+
+                                    for (int i = 0; i < words.Length - 1; i++)
+                                    {
+                                        <p>@words[i]</p>
+
+                                    }
+                                }
+                            }
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header" id="headingOne">
+                        <h5 class="mb-0">
+                            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                                Viết Đánh giá Sản phẩm
+                            </button>
+                        </h5>
+                    </div>
+                    <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion" style="background:#E8EFEF">
+                        <div class="product-customer-col-4 js-customer-col-4">
+                            <form action="/ProductDetail/Single" method="post" id="addReviewFrm" class="bv-form" enctype="multipart/form-data">
+                                <button type="submit" class="bv-hidden-submit" style="display: none; width: 0px; height: 0px;"></button>
+
+                                <input type="hidden" name="product_id" value="@data.id" id="product_id">
+                                <div class="rate form-group has-feedback has-error" id="rating_wrapper">
+                                    <label>1. Đánh giá của bạn về sản phẩm này:</label>
+                                    <div class="rating-input">
+                                        <div class="rating1">
+                                            <span class="starRating">
+                                                <input id="rating5" type="radio" name="rating1" value="5">
+                                                <label for="rating5">5</label>
+                                                <input id="rating4" type="radio" name="rating1" value="4">
+                                                <label for="rating4">4</label>
+                                                <input id="rating3" type="radio" name="rating1" value="3">
+                                                <label for="rating3">3</label>
+                                                <input id="rating2" type="radio" name="rating1" value="2">
+                                                <label for="rating2">2</label>
+                                                <input id="rating1" type="radio" name="rating1" value="1">
+                                                <label for="rating1">1</label>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <small class="help-block er-rate" style="display: none;">Vui lòng chọn đánh giá của bạn về sản phẩm này.</small><small class="help-block" style="display: none;">Please enter a valid number</small>
+                                </div>
+                                <script>
+                                    $(document).ready(function () {
+                                        $(".btn-add-review").click(function () {
+                                            var rate = $('input[name="rating1"]:checked').length;
+                                            if (rate <= 0) {
+                                                $(".er-rate").css('display', 'block');
+                                                return false;
+                                            }
+                                        });
+
+                                        $('input[name="rating1"]').click(function () {
+                                            $(".er-rate").slideUp(300);
+                                        });
+
+
+                                    });
+                                </script>
+                                <div class="review-content form-group has-feedback has-error">
+                                    <label for="review_detail">2. Viết nhận xét của bạn vào bên dưới:</label>
+                                    <textarea placeholder="Nhận xét của bạn về sản phẩm này" class="form-control" name="detail" id="review_detail" cols="30" rows="5" data-bv-field="detail"></textarea>
+                                    @*<small class="help-block" style="display: block;">Nội dung chứa ít nhất 50 ký tự</small>*@
+                                </div>
+                                <div id="imageUploader">
+                                    <div class="review-file form-group">
+                                        @*<input type="file" multiple="" id="fileSelector" accept="image/*" style="display: none;">*@
+                                        <label for="fileSelector">
+                                            <!-- react-text: 5 -->Thêm hình sản phẩm nếu có:<!-- /react-text -->
+                                            <!-- <span class="button">Chọn hình</span> -->
+
+                                        </label>
+                                        <input type="file" multiple="" id="fileSelector" accept="image/*" name="file">
+                                        <div class="files"></div>
+                                    </div>
+                                </div>
+
+                                <div class="action">
+
+                                    <button type="submit" class="btn btn-default btn-add-review ">Gửi nhận xét</button>
+                                    <p style=" font-size: 12px; margin-top: 20px; float: left;">* Để nhận xét được duyệt, quý khách lưu ý tham khảo <a class="js-open-freegift" href="#">Tiêu chí duyệt nhận xét</a> của Shop</p>
+                                </div>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header" id="headingThree">
+                        <h5 class="mb-0">
+                            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                Xem Đánh giá sản phẩm
+                            </button>
+                        </h5>
+                    </div>
+                    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                        <div class="card-body">
+                            @foreach (Comment cmt in Model)
+                            {
+                            <div class="style__StyledComment-sc-103p4dk-5 kRhner review-comment">
+                                <div class="review-comment__avatar">
+                                    <div class="review-comment__avatar-thumb" style="background-image: url(&quot;//tiki.vn/assets/img/avatar.png&quot;);">
+                                        <span>@cmt.author[0]</span>
+                                    </div>
+                                    <div class="review-comment__avatar-info">
+                                        <div class="review-comment__avatar-wrap">
+                                            <span class="review-comment__avatar-name">@cmt.author</span><span class="review-comment__avatar-bought"><span class="review-comment__avatar-icon"></span>Đã mua hàng ở Tiki</span>
+                                        </div>
+                                        <div class="review-comment__avatar-date-options">
+                                            <div class="review-comment__avatar-date">Nhận xét vào @cmt.create_at</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="Stars__StyledStars-sc-15olgyg-0 jucQbJ">
+                                    <div style="width: 40%;">
+                                        <div class="rating1">
+                                            <span class="starRating">
+                                                @*Hiển thị sao đánh giá*@
+                                                @for (int i = 0; i < cmt.rating; i++)
+                                                {
+                                                    <i class="fas fa-star" style="color:#2fdab8"></i>
+                                                }
+
+
+
+                                            </span>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="review-comment__content">@cmt.content</div>
+                                <div class="review-comment__labels">
+                                </div>
+                                <div class="review-comment__images">
+                                    @if (cmt.path_img != null)
+                                    {
+                                        <div class="review-comment__image" style="background-image: url('../images/@cmt.path_img');"></div>
+                                    }
+                                </div>
+                                <span class="review-comment__thank "></span>
+                                <i class="fa fa-commenting-o" aria-hidden="true"></i>
+                                <span class="review-comment__reply">Gửi trả lời</span>
+                                <form class="style__StyledReplyComment-sc-103p4dk-7 bAQjMT reply-comment" method="post" action="/ProductDetail/Reply" style="display:none">
+                                    <textarea maxlength="1000" type="text" placeholder="Viết câu trả lời" class="reply-comment__input" rows="3" name="content"></textarea>
+                                    <div class="reply-comment__count">0/1000</div>
+                                    <input name="comment_id" value="@cmt.id" style="display:none" />
+                                    <input name="id_sp" value="@data.id" style="display:none" />
+                                    <button type="submit" class="reply-comment__submit">Gửi</button>
+                                </form>
+                                @foreach (var rep in cmt.Replies)
+                                {
+                                    <div class="review-comment__sub-comments">
+                                        <div class="style__StyledSubComment-sc-103p4dk-6 jhAMaS review-sub-comment">
+                                            <div class="review-comment__avatar">
+                                                <div class="review-comment__avatar-thumb" style="background-image: url(&quot;//tiki.vn/assets/img/avatar.png&quot;);">
+                                                    <span>@rep.author[0]</span>
+                                                </div>
+                                                <div class="review-comment__avatar-info">
+                                                    <div class="review-comment__avatar-wrap">
+                                                        <span class="review-comment__avatar-name">@rep.author</span><span class="review-comment__avatar-bought"><span class="review-comment__avatar-icon"></span>Đã mua hàng ở Tiki</span>
+                                                    </div>
+                                                    <div class="review-comment__avatar-date-options">
+                                                        <div class="review-comment__avatar-date">Nhận xét vào @rep.create_at</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="review-sub-comment__content">
+                                                @rep.content
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+
+                            </div>
+                                
+                            }
+
+                            <script>
+                                $('.review-comment__reply').click(function () {
+                                    $('.reply-comment').toggle("blind", 500);
+                                });
+
+                                var lsrate = $('input[name="rate"]').val();
+                                console.log(lsrate);
+                            </script>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- //new_arrivals -->
+        <!--/slider_owl-->
+
+        <div class="w3_agile_latest_arrivals">
+            <h3 class="wthree_text_info"><span>Sản Phẩm </span>Liên Quan</h3>
+            <div class="clearfix"> </div>
+            <!--//slider_owl-->
+        </div>
+        <div class="container-fluid">
+
+            <ul id="autoWidth" class="cs-hidden">
+                @foreach (var a in spLq)
+                {
+                    <li class="item-a">
+
+                        @*    <div class="box">*@
+
+
+
+                        <div class="men-pro-item simpleCart_shelfItem">
+                            <div class="men-thumb-item">
+                                @{
+
+                                    if (a.photo != null)
+                                    {
+                                        string[] list = a.photo.Split(';');
+
+                                        <img src="/images/@list[0]" alt="" class="pro-image-front">
+                                        <img src="/images/@list[1]" alt="" class="pro-image-back">
+                                    }
+
+                                }
+                                <div class="men-cart-pro">
+                                    <div class="inner-men-cart-pro">
+                                        @* <a href="/Home/Single" class="link-product-add-cart">Xem Thêm</a>*@
+                                        @Html.ActionLink("Xem thêm", "Single", "ProductDetail", new { id = a.id }, new { @class = "link-product-add-cart" })
+
+                                    </div>
+                                </div>
+                                <span class="product-new-top">-@a.discount %</span>
+
+                            </div>
+                            <div class="item-info-product">
+
+                                <h4><a href="/ProductDetail/Single/@a.id" class="">@a.product_name</a></h4>
+                                @*<h4>@Html.ActionLink(a.produc)</h4>*@
+                                <div class="info-product-price">
+                                    <span class="item_price">@(a.price-a.price*a.discount/100) VND</span>
+                                    <del>@a.price VND</del>
+                                </div>
+                                <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out button2">
+                                    <form action="#" method="post">
+                                        <fieldset>
+                                            <input type="hidden" name="cmd" value="_cart">
+                                            <input type="hidden" name="add" value="1">
+                                            <input type="hidden" name="business" value="@a.price">
+                                            <input type="hidden" name="item_name" value="@a.product_name">
+                                            <input type="hidden" name="amount" value="">
+                                            <input type="hidden" name="discount_amount" value="@a.discount">
+                                            <input type="hidden" name="currency_code" value="VND">
+                                            <input type="hidden" name="return" value=" ">
+                                            <input type="hidden" name="cancel_return" value=" ">
+                                            <input type="submit" name="submit" value="Thêm vào giỏ" class="button">
+                                        </fieldset>
+                                    </form>
+                                </div>
+
+                            </div>
+                        </div>
+                        @* </div> *@
+                    </li>
+                }
+
+
+
+            </ul>
+        </div>
+    </div>
+    <!--//single_page-->
+    <!--/grids-->
+    <div class="coupons">
+        <div class="coupons-grids text-center">
+            <div class="w3layouts_mail_grid">
+                <div class="col-md-3 w3layouts_mail_grid_left">
+                    <div class="w3layouts_mail_grid_left1 hvr-radial-out">
+                        <i class="fa fa-truck" aria-hidden="true"></i>
+                    </div>
+                    <div class="w3layouts_mail_grid_left2">
+                        <h3>FREE SHIP</h3>
+                        <p>Giao hàng tận nơi, nhanh chóng</p>
+                    </div>
+                </div>
+                <div class="col-md-3 w3layouts_mail_grid_left">
+                    <div class="w3layouts_mail_grid_left1 hvr-radial-out">
+                        <i class="fa fa-headphones" aria-hidden="true"></i>
+                    </div>
+                    <div class="w3layouts_mail_grid_left2">
+                        <h3>Hổ trợ 24/7 </h3>
+                        <p>Đội ngũ nhân viên nhiệt tình, năng động</p>
+                    </div>
+                </div>
+                <div class="col-md-3 w3layouts_mail_grid_left">
+                    <div class="w3layouts_mail_grid_left1 hvr-radial-out">
+                        <i class="fa fa-shopping-bag" aria-hidden="true"></i>
+                    </div>
+                    <div class="w3layouts_mail_grid_left2">
+                        <h3>ĐẢM BẢO CHÁT LƯỢNG</h3>
+                        <p>Cam kết về chất lượng</p>
+                    </div>
+                </div>
+                <div class="col-md-3 w3layouts_mail_grid_left">
+                    <div class="w3layouts_mail_grid_left1 hvr-radial-out">
+                        <i class="fa fa-gift" aria-hidden="true"></i>
+                    </div>
+                    <div class="w3layouts_mail_grid_left2">
+                        <h3>COUPON QUÀ TẶNG MIỄN PHÍ</h3>
+                        <p>Nhiều quà tặng hấp dẫn</p>
+                    </div>
+                </div>
+                <div class="clearfix"> </div>
+            </div>
+
+        </div>
+    </div>
+    <!--grids-->
+</div>

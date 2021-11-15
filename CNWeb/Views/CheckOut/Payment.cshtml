@@ -1,0 +1,195 @@
+﻿@using CNWeb.Models
+@model Cart
+@{
+    ViewBag.Title = "Payment";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@{
+    Receiver re = ViewBag.NguoiNhan as Receiver;
+    Cart cart = Session["Cart"] as Cart;
+    var lsSp = ViewBag.lsProduct;
+    var tien = Convert.ToInt32(ViewBag.Tien);
+    string typePayment;
+    var total = Convert.ToInt32(ViewBag.total);
+    var giam = Convert.ToInt32(ViewBag.giam);
+
+
+}
+
+<main style="background: rgb(255, 255, 255)">
+    <div class="Container-itwfbd-0 jFkAwY" style="display: flex; width: 1200px; flex-wrap: wrap">
+        <div class="styles__Left-hcztvk-1 ggAFge">
+            <div class="styles__Section-hcztvk-0 giRdMi">
+                <h3 class="title">Chọn hình thức thanh toán</h3>
+                <div class="styles__StyledPaymentMethods-sc-1u5r3pb-0 fJEQQi">
+                    <ul class="list">
+                        <li class="styles__StyledMethod-sc-1u5r3pb-1 fTvtIP">
+                            <label class="RadioCheckout__StyledRadio-bkaeis-0 bqACGT">
+                                <input type="radio" name="payment-methods" value="Thanh toán tiền mặt khi nhận hàng" /><span class="radio-fake"></span><span class="label">Thanh toán tiền mặt khi nhận hàng</span>
+                            </label>
+                        </li>
+                        <li class="styles__StyledMethod-sc-1u5r3pb-1 fTvtIP">
+                            <label class="RadioCheckout__StyledRadio-bkaeis-0 bqACGT">
+                                <input type="radio" name="payment-methods" value="Thanh toán bằng thẻ quốc tế Visa, Master, JCB" /><span class="radio-fake"></span><span class="label">Thanh toán bằng thẻ quốc tế Visa, Master, JCB</span>
+                            </label>
+                        </li>
+                        <li class="styles__StyledMethod-sc-1u5r3pb-1 fTvtIP">
+                            <label class="RadioCheckout__StyledRadio-bkaeis-0 bqACGT">
+                                <input type="radio" name="payment-methods" value="Thẻ ATM nội địa/Internet Banking (Miễn phí thanh toán)" /><span class="radio-fake"></span><span class="label">Thẻ ATM nội địa/Internet Banking (Miễn phí thanh toán)</span>
+                            </label>
+                        </li>
+
+                        <li class="styles__StyledMethod-sc-1u5r3pb-1 fTvtIP">
+                            <label class="RadioCheckout__StyledRadio-bkaeis-0 bqACGT">
+                                <input type="radio" name="payment-methods" value="Thanh toán bằng ZaloPay" /><span class="radio-fake"></span>
+                                <img src="https://frontend.tikicdn.com/_desktop-next/static/img/icons/icon-zalopay.svg" alt="zalopay" class="card-img" style="width:44px" /><span class="label">Thanh toán bằng ZaloPay</span>
+                            </label>
+                            <p class="styles__StyledMethod-sc-1u5r3pb-1 fTvtIP">
+                                <label class="RadioCheckout__StyledRadio-bkaeis-0 bqACGT">
+                                    <input type="radio" name="payment-methods" value="Thanh toán bằng ví MoMo" /><span class="radio-fake"></span>
+                                    <img src="https://frontend.tikicdn.com/_desktop-next/static/img/icons/icon-momo.svg" style="width: 44px;" alt="momo" class="card-img" width="44" /><span class="label">Thanh toán bằng ví MoMo</span>
+                                </label>
+                            </p>
+                            <p class="message"></p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <script>
+                var type;
+                $(document).ready(function () {
+                    $('.done').click(function (event) {
+                        var check = $('input[name="payment-methods"]:checked');
+                        if (check.length <= 0) {
+                            alert('Hãy chọn hình thức thanh toán');
+                            return false;
+                        }
+                        alert("Thanh Toán thành công");
+                        $(this).attr('href', '/checkout/Done?id_reciver=@re.id&id_cart=@cart.id&total=@total&type=' + check.val());
+
+                    });
+                });
+            </script>
+
+            <div class="order-button">
+
+                @Html.ActionLink("ĐẶT MUA", "Done", new { }, new { @class = "btn btn-danger done" })
+                <p>(Xin vui lòng kiểm tra lại đơn hàng trước khi Đặt Mua)</p>
+            </div>
+        </div>
+        <div class="styles__Right-hcztvk-2 jFEIKb">
+            <div class="ShippingAddress__StyledShippingAddress-sc-12icqkv-0 fxjiAa">
+                <div class="title">
+                    <span>Địa chỉ giao hàng</span><a href="/checkout">Sửa</a>
+                </div>
+                <div class="address">
+                    <span class="name">@re.name</span><span class="street">
+                        @re.address
+                    </span><span class="phone">Điện thoại: @re.phone</span>
+                </div>
+            </div>
+            <div class="OrderSummary__StyledOrderSummary-ue7sy3-0 UHbjr">
+                <div class="title">
+                    <span>Đơn hàng (@ViewBag.SL sản phẩm)</span><a href="/Cart/WatchCart">Sửa</a>
+                </div>
+                <div class="cart">
+                    <div class="product">
+                        @foreach (Cart_detail x in lsSp)
+                        {
+                            <div class="OrderSummary__StyledItem-ue7sy3-1 iylcMU">
+                                <div class="info">
+                                    <strong class="qty">@x.quantity x</strong>
+                                    <a href="#" target="_blank" class="product-name">@x.Product.product_name</a>
+                                </div>
+                                <div class="price">
+                                    @Convert.ToInt32(
+                                     @x.Product.price * x.quantity
+
+                                  ).ToString("#,##") ₫
+                                </div>
+                            </div>
+                        }
+
+                    </div>
+
+
+                    <div class="price-summary">
+                        <div class="OrderSummary__StyledPriceInfo-ue7sy3-2 ifcYED">
+                            <div class="inner">
+                                <div class="name">Tạm tính</div>
+                                <div class="value">@tien.ToString("#,##") đ</div>
+                            </div>
+                        </div>
+                        <div class="OrderSummary__StyledPriceInfo-ue7sy3-2 ifcYED">
+                            <div class="inner">
+                                <div class="name">Phí vận chuyển</div>
+                                <div class="value">0đ</div>
+                            </div>
+                            <div class="OrderSummary__StyledSponsorFee-ue7sy3-4 byenE">
+                                <ul class="sponsor__items">
+                                    @*<li class="sponsor__item">
+                                            <span class="sponsor__name">Phí ban đầu</span><span class="sponsor__prices sponsor__prices--null">39.000đ</span>
+                                        </li>*@
+                                    <li class="sponsor__item">
+
+                                        <span class="sponsor__name">Tiki hỗ trợ</span><span class="sponsor__prices sponsor__prices--positive">-@giam.ToString("#,##")</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="total">
+                            <div class="name">Thành tiền:</div>
+                            <div class="value">
+                                @total.ToString("#,##") đ<i>(Đã bao gồm VAT nếu có)</i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<div class="coupons">
+    <div class="coupons-grids text-center">
+        <div class="w3layouts_mail_grid">
+            <div class="col-md-3 w3layouts_mail_grid_left">
+                <div class="w3layouts_mail_grid_left1 hvr-radial-out">
+                    <i class="fa fa-truck" aria-hidden="true"></i>
+                </div>
+                <div class="w3layouts_mail_grid_left2">
+                    <h3>FREE SHIP</h3>
+                    <p>Giao hàng tận nơi, nhanh chóng</p>
+                </div>
+            </div>
+            <div class="col-md-3 w3layouts_mail_grid_left">
+                <div class="w3layouts_mail_grid_left1 hvr-radial-out">
+                    <i class="fa fa-headphones" aria-hidden="true"></i>
+                </div>
+                <div class="w3layouts_mail_grid_left2">
+                    <h3>Hổ trợ 24/7 </h3>
+                    <p>Đội ngũ nhân viên nhiệt tình, năng động</p>
+                </div>
+            </div>
+            <div class="col-md-3 w3layouts_mail_grid_left">
+                <div class="w3layouts_mail_grid_left1 hvr-radial-out">
+                    <i class="fa fa-shopping-bag" aria-hidden="true"></i>
+                </div>
+                <div class="w3layouts_mail_grid_left2">
+                    <h3>ĐẢM BẢO CHÁT LƯỢNG</h3>
+                    <p>Cam kết về chất lượng</p>
+                </div>
+            </div>
+            <div class="col-md-3 w3layouts_mail_grid_left">
+                <div class="w3layouts_mail_grid_left1 hvr-radial-out">
+                    <i class="fa fa-gift" aria-hidden="true"></i>
+                </div>
+                <div class="w3layouts_mail_grid_left2">
+                    <h3>COUPON QUÀ TẶNG MIỄN PHÍ</h3>
+                    <p>Nhiều quà tặng hấp dẫn</p>
+                </div>
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+
+    </div>
+</div>

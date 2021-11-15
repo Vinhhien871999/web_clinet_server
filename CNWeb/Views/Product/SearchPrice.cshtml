@@ -1,0 +1,52 @@
+﻿@using CNWeb.Models;
+@model IEnumerable<Product>
+@if (Model.Count() != 0)
+{
+    foreach (Product a in Model)
+    {
+
+        <div class="col-md-4 product-men">
+            <div class="men-pro-item simpleCart_shelfItem">
+                <div class="men-thumb-item">
+                    @{
+                        if (a.photo != null)
+                        {
+                            string[] lsPhoto = a.photo.Split(';');
+                            <img src="/images/@lsPhoto[0]" alt="" class="pro-image-front">
+                            <img src="/images/@lsPhoto[1]" alt="" class="pro-image-back">
+                        }
+                    }
+                    <div class="men-cart-pro">
+                        <div class="inner-men-cart-pro">
+                            @* <a href="/Home/Single" class="link-product-add-cart">Xem Thêm</a>*@
+                            @*@Html.ActionLink("Xem thêm", "Single", "ProductDetail", new { id = a.id }, new { @class = "link-product-add-cart" })*@
+
+                            <a href="@Url.RouteUrl("xemchitiet",new { @id=a.id,@tensp=a.product_name})" class="link-product-add-cart">Xem thêm</a>
+
+                        </div>
+                    </div>
+                    <span class="product-new-top">-@a.discount %</span>
+
+                </div>
+                <div class="item-info-product ">
+                    <h4><a href="@Url.RouteUrl("xemchitiet",new { @id=a.id,@tensp=a.product_name})">@a.product_name</a></h4>
+                    <div class="info-product-price">
+                        <span class="item_price">@(a.price-a.price*a.discount/100) VND</span>
+                        <del>@a.price VND</del>
+                    </div>
+                    <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out button2">
+                        @* <a href="@Url.Action("AddCart", "Cart", new { @maSp = a.id, @url = Request.Url.ToString()})">Thêm vào giỏ</a>*@
+                        @*<a class="add-cart" id="@a.id">Thêm giỏ hàng</a>*@
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+    }
+}
+else
+{
+    <h3 style="padding-top:30px">Hiện không có sản phẩm</h3>
+}

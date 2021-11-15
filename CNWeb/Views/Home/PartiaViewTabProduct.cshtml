@@ -1,0 +1,58 @@
+﻿
+@using CNWeb.Models
+@model IEnumerable<Product>
+
+
+@foreach (Product a in Model.Take(4))
+{
+    <div class="col-md-3 product-men">
+        <div class="men-pro-item simpleCart_shelfItem">
+            <div class="men-thumb-item">
+                @{
+
+                    if (a.photo != null)
+                    {
+                        string[] lsPhoto = a.photo.Split(';');
+
+                        <img src="/images/@lsPhoto[0]" alt="" class="pro-image-front">
+                        <img src="/images/@lsPhoto[1]" alt="" class="pro-image-back">
+                    }
+
+                }
+                <div class="men-cart-pro">
+                    <div class="inner-men-cart-pro">
+                        @* <a href="/Home/Single" class="link-product-add-cart">Xem Thêm</a>*@
+                        @Html.ActionLink("Xem thêm", "Single", "ProductDetail", new { id = a.id }, new { @class = "link-product-add-cart" })
+
+                    </div>
+                </div>
+                <span class="product-new-top">-@a.discount %</span>
+
+            </div>
+            <div class="item-info-product ">
+                <h4>@Html.ActionLink(a.product_name, "Single", "ProductDetail", new { id = a.id }, null)</h4>
+                <div class="info-product-price">
+                    <span class="item_price">@(a.price-a.price*a.discount/100) VND</span>
+                    <del>@a.price VND</del>
+                </div>
+                <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out button2">
+                    <form action="#" method="post">
+                        <fieldset>
+                            <input type="hidden" name="cmd" value="_cart">
+                            <input type="hidden" name="add" value="1">
+                            <input type="hidden" name="business" value="@a.price">
+                            <input type="hidden" name="item_name" value="@a.product_name">
+                            <input type="hidden" name="amount" value="">
+                            <input type="hidden" name="discount_amount" value="@a.discount">
+                            <input type="hidden" name="currency_code" value="VND">
+                            <input type="hidden" name="return" value=" ">
+                            <input type="hidden" name="cancel_return" value=" ">
+                            <input type="submit" name="submit" value="Thêm vào giỏ" class="button">
+                        </fieldset>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+}

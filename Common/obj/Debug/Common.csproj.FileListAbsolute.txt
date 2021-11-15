@@ -1,0 +1,11 @@
+C:\Users\admin\Desktop\Quả tạ\web\Common\bin\Debug\DAO.dll
+C:\Users\admin\Desktop\Quả tạ\web\Common\bin\Debug\DAO.pdb
+C:\Users\admin\Desktop\Quả tạ\web\Common\obj\Debug\Common.csprojAssemblyReference.cache
+C:\Users\admin\Desktop\Quả tạ\web\Common\obj\Debug\Common.csproj.CoreCompileInputs.cache
+C:\Users\admin\Desktop\Quả tạ\web\Common\obj\Debug\DAO.dll
+C:\Users\admin\Desktop\Quả tạ\web\Common\obj\Debug\DAO.pdb
+D:\Web_Ah\CNWeb\Common\bin\Debug\DAO.dll
+D:\Web_Ah\CNWeb\Common\bin\Debug\DAO.pdb
+D:\Web_Ah\CNWeb\Common\obj\Debug\Common.csproj.CoreCompileInputs.cache
+D:\Web_Ah\CNWeb\Common\obj\Debug\DAO.dll
+D:\Web_Ah\CNWeb\Common\obj\Debug\DAO.pdb

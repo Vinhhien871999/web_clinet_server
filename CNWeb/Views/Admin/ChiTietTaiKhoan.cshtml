@@ -1,0 +1,85 @@
+﻿@model CNWeb.Models.User
+
+@{
+    ViewBag.Title = "ChiTietTaiKhoan";
+    Layout = "~/Views/Shared/admin_layout.cshtml";
+}
+
+<h2>Chi tiết tài khoản</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.passwork)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.passwork)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.phone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.phone)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.address)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.address)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.create_at)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.create_at)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.point)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.point)
+        </dd>
+
+        <dt>
+            Phân quyền:
+        </dt>
+
+        <dd>
+            @foreach(var item in Model.Permissions)
+            {
+                <span>@item.tenQuyen;</span>
+            }
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Sửa tài khoản", "SuaTaiKhoan", new { @id = Model.id }) |
+    @Html.ActionLink("Trở về", "TaiKhoan")
+</p>

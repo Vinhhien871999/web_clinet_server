@@ -1,0 +1,28 @@
+﻿.left-side li label {
+    padding: 2px 5px;
+    display: inline-block;
+    margin: 0;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.left-side li input{
+    display:none;
+}
+
+.left-side li:hover{
+
+}
+
+.left-side li span {
+     display: inline-block; 
+     border-left: 4px solid transparent; 
+}
+
+.left-side li span:hover {
+        background: #2fdab8;
+
+}
+.selected {
+    background: #2fdab8;
+}

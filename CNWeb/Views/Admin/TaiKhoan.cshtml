@@ -1,0 +1,84 @@
+﻿@model IEnumerable<CNWeb.Models.User>
+
+@{
+    ViewBag.Title = "TaiKhoan";
+    Layout = "~/Views/Shared/admin_layout.cshtml";
+}
+
+<h2>Quản lý tài khoản</h2>
+
+<p>
+    @Html.ActionLink("Thêm quyền cho tài khoản", "ThemQuyenTaiKhoan")
+</p>
+<br />
+<p>
+    @Html.ActionLink("Xóa quyền của tài khoản", "XoaQuyenTaiKhoan")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.passwork)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.phone)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.address)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.point)
+        </th>
+        <th>
+            Tên Quyền
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.id)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.name)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.email)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.passwork)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.phone)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.address)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.point)
+    </td>
+    <td>
+        @foreach (var x in item.Permissions)
+        {
+            <span>@x.tenQuyen,</span>
+
+        }
+    </td>
+    <td>
+        @Html.ActionLink("Sửa", "SuaTaiKhoan", new { @id = item.id }) |
+        @Html.ActionLink("Chi tiết", "ChiTietTaiKhoan", new { @id = item.id }) |
+        @Html.ActionLink("Xóa", "XoaTaiKhoan", new { @id = item.id })
+    </td>
+</tr>
+}
+
+</table>

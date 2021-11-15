@@ -1,0 +1,45 @@
+﻿@using CNWeb.Models 
+@{
+    ViewBag.Title = "DonHang";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+@model IEnumerable<formPayment>
+
+<div class="col-main">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Mã đơn hàng</th>
+                <th>Ngày đặt</th>
+                <th>Thành tiền </th>
+                <th>Trạng thái thanh toán</th>
+                <th>Vận Chuyển</th>                
+                <th>Lựa chọn</th>
+            </tr>
+        </thead>
+        <tbody>
+            
+            @foreach (formPayment item in Model)
+            {
+            <tr>                
+                <td><a href="/User/DetailPayment/@item.id" style="color:Highlight">@item.id</a></td>
+                <td>@item.create_at</td>
+                <td>@Convert.ToInt32( item.total).ToString("#,##")</td>
+                <td>@item.typePayment</td>
+                @if(!@item.status.Equals("Chờ xác nhận")){
+                    <td>@item.status</td>
+                    <td></td>
+                }else{
+                    <td>@item.status</td>
+                    <td><a href="/User/Destroy/@item.id">Hủy</a></td>
+                }
+
+            </tr>
+            }
+
+            
+        </tbody>
+    </table>
+
+</div>

@@ -1,0 +1,84 @@
+﻿@using CNWeb.Models
+@model IEnumerable<Product>
+@{
+    ViewBag.Title = "Find";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<main class="main-wrapper"  style="margin-top:80px">
+    <div id="wrapper-search">
+        <div class="container">
+            <div class="inner-template-search">
+                <h1>
+                    Tìm kiếm
+                </h1>
+                <div class="message-txt clearfix">
+                    <p class="subtext-result">	Kết quả tìm kiếm cho  <strong>"@ViewBag.Search"</strong>.</p>
+                </div>
+                <form class="search-page" action="/Home/Find" method="post">
+                    <div class="input-group">
+                        <input type="hidden" name="type" value="product">
+                        <div class="input-group-append">
+                            <button class="btn btn-secondary" type="submit">
+                                <i class="fa fa-search"></i>
+                            </button>
+                        </div>
+                        <input name="search" value="@ViewBag.Search" type="text" class="input-search form-control" placeholder="Tìm kiếm sản phẩm...">
+                    </div>
+                </form>
+            </div>
+            <div class="list-product row">
+                @foreach (var a in Model)
+                {
+                    <div class="col-md-4 product-men">
+                        <div class="men-pro-item simpleCart_shelfItem">
+                            <div class="men-thumb-item">
+                                @{
+                                    if (a.photo != null)
+                                    {
+                                        string[] lsPhoto = a.photo.Split(';');
+                                        <img src="/images/@lsPhoto[0]" alt="" class="pro-image-front">
+                                        <img src="/images/@lsPhoto[1]" alt="" class="pro-image-back">
+                                    }
+                                }
+                                <div class="men-cart-pro">
+                                    <div class="inner-men-cart-pro">
+                                        @* <a href="/Home/Single" class="link-product-add-cart">Xem Thêm</a>*@
+                                        @*@Html.ActionLink("Xem thêm", "Single", "ProductDetail", new { id = a.id }, new { @class = "link-product-add-cart" })*@
+
+                                        <a href="@Url.RouteUrl("xemchitiet",new { @id=a.id,@tensp=a.product_name})" class="link-product-add-cart">Xem thêm</a>
+
+                                    </div>
+                                </div>
+                                <span class="product-new-top">-@a.discount %</span>
+
+                            </div>
+                            <div class="item-info-product ">
+                                <h4><a href="@Url.RouteUrl("xemchitiet",new { @id=a.id,@tensp=a.product_name})">@a.product_name</a></h4>
+                                <div class="info-product-price">
+                                    <span class="item_price">@(a.price-a.price*a.discount/100) VND</span>
+                                    <del>@a.price VND</del>
+                                </div>
+                                <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out button2">
+                                    <a href="@Url.Action("AddCart", "Cart", new { @maSp = a.id, @url = Request.Url.ToString()})">Thêm vào giỏ</a>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+            <div id="pagination" class="clearfix">
+                <span class="page-node current">1</span>
+                <a class="page-node" href="#">2</a>
+                <a class="page-node" href="#">3</a>
+                <a class="page-node" href="#">4</a>
+                <a class="next" href="#">
+                    <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 490.8 490.8" style="enable-background:new 0 0 490.8 490.8;" xml:space="preserve"><path style="fill:#F44336;" d="M135.685,3.128c-4.237-4.093-10.99-3.975-15.083,0.262c-3.992,4.134-3.992,10.687,0,14.82l227.115,227.136L120.581,472.461c-4.237,4.093-4.354,10.845-0.262,15.083c4.093,4.237,10.845,4.354,15.083,0.262c0.089-0.086,0.176-0.173,0.262-0.262l234.667-234.667c4.164-4.165,4.164-10.917,0-15.083L135.685,3.128z"></path><path d="M128.133,490.68c-5.891,0.011-10.675-4.757-10.686-10.648c-0.005-2.84,1.123-5.565,3.134-7.571l227.136-227.115L120.581,18.232c-4.171-4.171-4.171-10.933,0-15.104c4.171-4.171,10.933-4.171,15.104,0l234.667,234.667c4.164,4.165,4.164,10.917,0,15.083L135.685,487.544C133.685,489.551,130.967,490.68,128.133,490.68z"></path>&gt;</svg>
+                </a>
+            </div>
+        </div>
+    </div>
+</main>
+

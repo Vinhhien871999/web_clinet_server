@@ -1,0 +1,52 @@
+﻿@using CNWeb.Models 
+@{
+    ViewBag.Title = "InfoCard";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+@model User
+
+<div class="col-main">       
+    <div class="my-account">
+        <h1 class="page-title">Thông tin thẻ</h1>
+        <div class="page-description">Để biết thông tin về điều kiện phát hành thẻ tích điểm, thẻ VIP, quý khách vui lòng tham khảo quy chế chương trình KHTT năm 2020</div>
+
+        <table class="table-view-card" style="width:100%">
+            <tbody>
+                <tr>
+                    <th>@Model.name</th>
+                    <td></td>
+                </tr>
+                <tr>
+                    <th>Điểm thẻ</th>
+                    <td>@Model.point</td>
+                </tr>
+                <tr>
+                    <th>  Ngày hết hạn</th>
+                    <td>@ViewBag.NgayHetHan</td>
+                </tr>
+                <tr>
+                    <th> Giảm khi mua hàng</th>
+                    @*>500đ giảm 5% >1000đ giảm 7% >2000đ giảm 10% ngược lại 0% *@
+                    <td>@ViewBag.Giam %</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <style type="text/css">
+                .table-view-card tr th,
+                .table-view-card tr td {
+                    line-height: 21px;
+                    padding: 10px 10px 0 0;
+                    text-align: right;
+                    font-weight: bold;
+                    border-top: none;
+                    border-bottom: 1px solid #E0E0E0;
+                }
+
+                .table-view-card tr th {
+                    text-align: left;
+                    font-weight: 500;
+                }
+        </style>
+    </div>
+</div>

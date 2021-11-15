@@ -1,0 +1,127 @@
+﻿@model IEnumerable<CNWeb.Models.detailPayment>
+
+@{
+    ViewBag.Title = "DonHang";
+    Layout = "~/Views/Shared/admin_layout.cshtml";
+}
+
+<h2>Danh sách đơn hàng</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.TenSP)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MauSac)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.KichThuoc)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.count)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Gia)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GiamGia)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TienShip)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TongTien)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PTThanhToan)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TimeDat)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TimeGiao)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TenNguoiVC)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SDT)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DCGiaoHang)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TenNguoiNhan)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SDTNguoiNhan)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Status)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.TenSP)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.MauSac)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.KichThuoc)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.count)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Gia)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.GiamGia)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.TienShip)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.TongTien)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.PTThanhToan)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.TimeDat)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.TimeGiao)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.TenNguoiVC)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.SDT)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.DCGiaoHang)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.TenNguoiNhan)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.SDTNguoiNhan)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Status)
+    </td>
+    <td>
+        @Html.ActionLink("Sửa", "SuaDonHang", new { @id= item.id_form }) |
+        @Html.ActionLink("Xác nhận", "XacNhanDonHang", new { @id= item.id_form }) |
+        @Html.ActionLink("Hủy", "HuyDonHang", new { @id= item.id_form })
+    </td>
+</tr>
+}
+
+</table>
